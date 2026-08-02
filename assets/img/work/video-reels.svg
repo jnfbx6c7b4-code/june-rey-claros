@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3B0764"/><stop offset=".55" stop-color="#A855F7"/><stop offset="1" stop-color="#4C1D95"/>
+    </linearGradient>
+    <linearGradient id="gl3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".18"/><stop offset="1" stop-color="#ffffff" stop-opacity=".02"/>
+    </linearGradient>
+    <radialGradient id="rd3" cx=".2" cy=".1" r=".9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".22"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="bl3" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg3)"/>
+  <g filter="url(#bl3)" opacity=".75">
+    <circle cx="180" cy="120" r="150" fill="#4C1D95" opacity=".55"/>
+    <circle cx="1040" cy="700" r="180" fill="#3B0764" opacity=".5"/>
+  </g>
+  <rect width="1200" height="800" fill="url(#rd3)"/>
+  <g transform="translate(0,84)">
+
+  <g>
+    <rect x="96" y="108" width="196" height="380" rx="26" fill="#0B0B0F" opacity=".85"/>
+    <rect x="96" y="108" width="196" height="380" rx="26" fill="url(#gl3)"/>
+    <rect x="96.5" y="108.5" width="195" height="379" rx="26" fill="none" stroke="#ffffff" stroke-opacity=".28"/>
+    <rect x="168.0" y="122" width="52" height="7" rx="3.5" fill="#fff" opacity=".35"/>
+    <circle cx="194.0" cy="288.0" r="34" fill="#fff" opacity=".92"/>
+    <path d="M184.0 272.0 L212.0 288.0 L184.0 304.0 Z" fill="#0B0B0F"/>
+    <rect x="114" y="410" width="106" height="12" rx="6" fill="#fff" opacity=".5"/>
+    <rect x="114" y="432" width="56" height="12" rx="6" fill="#fff" opacity=".28"/>
+    <rect x="114" y="454" width="160" height="6" rx="3" fill="#fff" opacity=".18"/>
+  </g>
+  <g>
+    <rect x="340" y="84" width="196" height="380" rx="26" fill="#0B0B0F" opacity=".85"/>
+    <rect x="340" y="84" width="196" height="380" rx="26" fill="url(#gl3)"/>
+    <rect x="340.5" y="84.5" width="195" height="379" rx="26" fill="none" stroke="#ffffff" stroke-opacity=".28"/>
+    <rect x="412.0" y="98" width="52" height="7" rx="3.5" fill="#fff" opacity=".35"/>
+    <circle cx="438.0" cy="264.0" r="34" fill="#fff" opacity=".92"/>
+    <path d="M428.0 248.0 L456.0 264.0 L428.0 280.0 Z" fill="#0B0B0F"/>
+    <rect x="358" y="386" width="106" height="12" rx="6" fill="#fff" opacity=".5"/>
+    <rect x="358" y="408" width="56" height="12" rx="6" fill="#fff" opacity=".28"/>
+    <rect x="358" y="430" width="160" height="6" rx="3" fill="#fff" opacity=".18"/>
+  </g>
+  <g>
+    <rect x="584" y="108" width="196" height="380" rx="26" fill="#0B0B0F" opacity=".85"/>
+    <rect x="584" y="108" width="196" height="380" rx="26" fill="url(#gl3)"/>
+    <rect x="584.5" y="108.5" width="195" height="379" rx="26" fill="none" stroke="#ffffff" stroke-opacity=".28"/>
+    <rect x="656.0" y="122" width="52" height="7" rx="3.5" fill="#fff" opacity=".35"/>
+    <circle cx="682.0" cy="288.0" r="34" fill="#fff" opacity=".92"/>
+    <path d="M672.0 272.0 L700.0 288.0 L672.0 304.0 Z" fill="#0B0B0F"/>
+    <rect x="602" y="410" width="106" height="12" rx="6" fill="#fff" opacity=".5"/>
+    <rect x="602" y="432" width="56" height="12" rx="6" fill="#fff" opacity=".28"/>
+    <rect x="602" y="454" width="160" height="6" rx="3" fill="#fff" opacity=".18"/>
+  </g>
+  <g>
+    <rect x="836" y="150" width="300" height="278" rx="22" fill="#0B0B0F" opacity=".72"/>
+    <rect x="836" y="150" width="300" height="278" rx="22" fill="url(#gl3)"/>
+    <rect x="836.5" y="150.5" width="299" height="277" rx="22" fill="none" stroke="#fff" stroke-opacity=".2"/>
+    <text x="868" y="200" font-family="Poppins,sans-serif" font-size="17" fill="#fff" opacity=".6">Avg. views / reel</text>
+    <text x="868" y="272" font-family="'Space Grotesk',sans-serif" font-size="60" font-weight="700" fill="#fff">128K</text>
+    <path d="M868 388 L916 344 L964 366 L1012 300 L1060 322 L1104 268" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  </g>
+</svg>
