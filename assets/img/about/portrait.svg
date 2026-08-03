@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 880" width="720" height="880" role="img">
   <defs>
     <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#4C1D95"/><stop offset=".5" stop-color="#7C3AED"/><stop offset="1" stop-color="#0C4A6E"/>
+      <stop offset="0" stop-color="#1B3A6B"/><stop offset=".5" stop-color="#6492D8"/><stop offset="1" stop-color="#14456E"/>
     </linearGradient>
     <linearGradient id="pf" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".16"/><stop offset="1" stop-color="#0B0B0F" stop-opacity=".55"/>
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".16"/><stop offset="1" stop-color="#080B12" stop-opacity=".55"/>
     </linearGradient>
     <filter id="pb" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="70"/></filter>
   </defs>
   <rect width="720" height="880" rx="32" fill="url(#pg)"/>
   <g filter="url(#pb)" opacity=".8">
-    <circle cx="140" cy="160" r="170" fill="#A855F7"/><circle cx="600" cy="740" r="190" fill="#38BDF8" opacity=".7"/>
+    <circle cx="140" cy="160" r="170" fill="#8AB4F2"/><circle cx="600" cy="740" r="190" fill="#BDD7FF" opacity=".7"/>
   </g>
   <rect width="720" height="880" rx="32" fill="url(#pf)"/>
   <circle cx="360" cy="352" r="132" fill="#fff" fill-opacity=".92"/>

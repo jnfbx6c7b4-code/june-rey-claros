@@ -50,11 +50,11 @@
     height: 100vh;
     height: 100dvh;
     padding: 108px 32px 40px;
-    background: rgba(13, 13, 18, .93);
+    background: rgb(var(--shell-rgb) / .94);
     -webkit-backdrop-filter: saturate(160%) blur(26px);
     backdrop-filter: saturate(160%) blur(26px);
     border-left: 1px solid var(--line);
-    box-shadow: -30px 0 80px rgba(0, 0, 0, .6);
+    box-shadow: -30px 0 80px rgb(var(--shadow-rgb) / .5);
     transform: translateX(102%);
     transition: transform .55s var(--ease);
     overflow-y: auto;
@@ -83,7 +83,7 @@
     position: fixed;
     inset: 0;
     z-index: 64;
-    background: rgba(5, 5, 8, .6);
+    background: rgb(var(--scrim-rgb) / .6);
     opacity: 0;
     visibility: hidden;
     transition: opacity var(--t) var(--ease), visibility var(--t);
@@ -102,11 +102,31 @@
 @media (max-width: 1024px) {
   :root { --section-y: clamp(72px, 9vw, 110px); }
 
-  .hero { padding-top: 128px; }
-  .hero__grid { grid-template-columns: 1fr; gap: 56px; }
-  .hero__content { max-width: 700px; }
-  .hero__scene { width: 100%; max-width: 560px; margin-inline: auto; }
+  /* TABLET — portrait moves above the copy, both centred */
+  .hero { padding-top: 124px; }
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    justify-items: center;
+    text-align: center;
+  }
+  .hero__visual { grid-row: 1; }               /* portrait first */
+  .hero__content { max-width: 660px; }
+  .hero__sub { margin-inline: auto; }
+  .hero__actions,
+  .hero__roles { justify-content: center; }
+  .hero__roles { border-top: none; padding-top: 8px; }
   .hero__scroll { display: none; }
+
+  /* the entrance animations both come from below once stacked */
+  .hero__content { animation-name: heroInUp; }
+  .hero__visual { animation-name: heroInUp; }
+  @keyframes heroInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .portrait { --portrait: clamp(260px, 42vw, 380px); }
 
   .about__grid { grid-template-columns: 1fr; gap: 64px; }
   .about__media { max-width: 460px; margin-inline: auto; }
@@ -152,10 +172,12 @@
 @media (max-width: 680px) {
   :root { --radius: 18px; --radius-lg: 22px; }
 
-  .hero__title { font-size: clamp(29px, 8.4vw, 42px); }
-  .hero__actions .btn { flex: 1 1 100%; }
-  .hero__trust { gap: 22px; }
-  .hero__trust li { flex: 1 1 40%; }
+  /* MOBILE — portrait centred on top, copy centred, buttons stacked */
+  .hero__title { font-size: clamp(32px, 9vw, 44px); }
+  .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__actions .btn { width: 100%; }
+  .hero__roles { gap: 8px; }
+  .hero__roles li { font-size: 12.5px; padding: 7px 13px; }
 
   .svc-grid,
   .work__grid,
@@ -185,13 +207,31 @@
 
   .to-top { right: 16px; bottom: 16px; width: 44px; height: 44px; }
 
-  /* the workspace scene gets busy on small screens — keep the essentials */
-  .float-card--analytics { left: -2%; width: 66%; }
-  .float-card--stat { right: -2%; min-width: 128px; padding: 12px 14px; }
-  .float-card__value { font-size: 26px; }
-  .chip--pr, .chip--ps { display: none; }
-  .orb { width: 44px; height: 44px; border-radius: 15px; }
-  .orb .ico { width: 19px; height: 19px; }
+  /* Portrait composition: smaller circle, fewer badges so it stays clean */
+  .hero__visual { padding: 30px 6px; }
+  .portrait { --portrait: clamp(250px, 66vw, 300px); }
+  .portrait__card { inset: -6% -7%; }
+  /* pull the decorative shapes inwards so they can't clip at the screen edge */
+  .portrait__shape--square { top: -11%; right: -5%; width: 60px; height: 60px; border-radius: 18px; }
+  .portrait__shape--dots { bottom: -10%; left: -6%; width: 72px; height: 72px; background-size: 12px 12px; }
+  .portrait__shape--ring { width: 116%; height: 116%; }
+
+  .tech-badge { font-size: 11.5px; padding: 6px 11px 6px 6px; gap: 6px; }
+  .tech-badge__mark { width: 22px; height: 22px; border-radius: 8px; font-size: 10.5px; }
+  .social-orb { width: 38px; height: 38px; }
+  .social-orb .ico { width: 17px; height: 17px; }
+
+  /* Nine badges is right for desktop but crowds a 280px circle — keep four
+     labels plus two orbs, drop the widest labels and one orb. */
+  .tech-badge--meta,
+  .tech-badge--gpt,
+  .social-orb--tt { display: none; }
+  .tech-badge--canva  { top: -7%;    left: 2%; }
+  .tech-badge--pr     { top: 13%;    right: -7%; }
+  .tech-badge--ps     { top: 50%;    right: -9%; }
+  .tech-badge--capcut { bottom: 6%;  right: 0%; }
+  .social-orb--ig     { top: -8%;    right: 10%; }
+  .social-orb--fb     { bottom: 12%; left: -2%; }
 }
 
 
@@ -212,7 +252,6 @@
   .testi-card { padding: 26px 22px; }
   .testi-card__quote { top: 20px; right: 20px; width: 30px; height: 30px; }
   .form { padding: 24px 20px; }
-  .float-card--analytics .sparkline { display: none; }
 }
 
 
@@ -220,7 +259,8 @@
    SHORT VIEWPORTS — keep the hero from overflowing on landscape laptops
    ========================================================================== */
 @media (max-height: 620px) and (min-width: 1025px) {
-  .hero { padding-top: 116px; }
-  .hero__trust { padding-top: 20px; }
+  .hero { padding-top: 112px; }
+  .hero__roles { padding-top: 20px; }
   .hero__scroll { display: none; }
+  .portrait { --portrait: clamp(240px, 22vw, 340px); }
 }

@@ -20,7 +20,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0B0B0F">
+  <meta name="theme-color" content="#080B12" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F5F8FD" media="(prefers-color-scheme: light)">
+
+  <!-- ===== THEME BOOTSTRAP =================================================
+       Runs before any CSS is applied so the correct theme is on <html> at
+       first paint — otherwise the page flashes the wrong colours. Saved
+       choice wins; otherwise follow the OS setting.
+       ==================================================================== -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('jrc-theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 
   <!-- ===== PRIMARY SEO ===================================================== -->
   <title>June Rey Claros — Social Media Manager, Video Editor & Content Strategist</title>
@@ -158,7 +176,6 @@
       <!-- ui -->
       <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></symbol>
       <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m12 5 7 7-7 7"/></symbol>
-      <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 3.5 20 12 6 20.5z" fill="currentColor" stroke="none"/></symbol>
       <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3.1 6.26 6.9 1-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.87-5-4.87 6.9-1z" fill="currentColor" stroke="none"/></symbol>
       <symbol id="i-quote" viewBox="0 0 24 24"><path d="M9.6 5C6.6 6.6 4.7 9.6 4.7 13.2c0 3.4 2 5.8 4.6 5.8 2.3 0 4-1.7 4-3.9 0-2.1-1.5-3.7-3.5-3.7-.3 0-.7 0-1 .1.4-1.7 2-3.6 3.7-4.6L9.6 5zm9 0c-3 1.6-4.9 4.6-4.9 8.2 0 3.4 2 5.8 4.6 5.8 2.3 0 4-1.7 4-3.9 0-2.1-1.5-3.7-3.5-3.7-.3 0-.7 0-1 .1.4-1.7 2-3.6 3.7-4.6L18.6 5z" fill="currentColor" stroke="none"/></symbol>
       <symbol id="i-check" viewBox="0 0 24 24"><path d="m20 6-11 11-5-5"/></symbol>
@@ -166,6 +183,8 @@
       <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
       <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></symbol>
       <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6 18 18M18 6 6 18"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></symbol>
       <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h8l-1 8 10-12h-8z"/></symbol>
       <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
 
@@ -222,7 +241,9 @@
   <header class="nav" id="nav">
     <div class="container nav__inner">
       <a class="nav__logo" href="#hero" aria-label="JRC — back to top">
-        <img src="assets/img/logo/monogram-white.png" alt="" width="40" height="40" class="nav__logo-mark">
+        <!-- two marks, one per theme: a white monogram vanishes on light -->
+        <img src="assets/img/logo/monogram-white.png" alt="" width="40" height="40" class="nav__logo-mark nav__logo-mark--dark">
+        <img src="assets/img/logo/monogram.png" alt="" width="40" height="40" class="nav__logo-mark nav__logo-mark--light">
         <span class="nav__logo-text">June Rey<strong>Claros</strong></span>
       </a>
 
@@ -240,6 +261,15 @@
       </nav>
 
       <div class="nav__actions">
+        <!-- Theme toggle: shows the icon for the theme you'd switch TO -->
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
+          <span class="theme-toggle__track" aria-hidden="true">
+            <svg class="ico theme-toggle__sun"><use href="#i-sun"/></svg>
+            <svg class="ico theme-toggle__moon"><use href="#i-moon"/></svg>
+            <span class="theme-toggle__knob"></span>
+          </span>
+        </button>
+
         <a class="btn btn--primary btn--sm" href="#contact" data-magnetic>
           <span>Hire Me</span><svg class="ico"><use href="#i-arrow-ur"/></svg>
         </a>
@@ -257,118 +287,133 @@
          HERO — headline, dual CTA, trust strip + animated workspace scene
          ================================================================== -->
     <section class="hero" id="hero">
+
+      <!-- Decorative hero backdrop: animated gradient mesh, a very subtle grid
+           and slow-drifting particles. Purely visual, hidden from AT. -->
+      <div class="hero__bg" aria-hidden="true">
+        <span class="hero__mesh"></span>
+        <span class="hero__pattern"></span>
+        <div class="particles">
+          <span style="--x:6%;--y:18%;--s:4px;--d:0s;--t:14s"></span>
+          <span style="--x:14%;--y:72%;--s:3px;--d:-2s;--t:17s"></span>
+          <span style="--x:22%;--y:38%;--s:5px;--d:-5s;--t:13s"></span>
+          <span style="--x:31%;--y:86%;--s:3px;--d:-8s;--t:19s"></span>
+          <span style="--x:44%;--y:12%;--s:4px;--d:-3s;--t:16s"></span>
+          <span style="--x:52%;--y:64%;--s:3px;--d:-11s;--t:15s"></span>
+          <span style="--x:63%;--y:26%;--s:5px;--d:-6s;--t:18s"></span>
+          <span style="--x:71%;--y:80%;--s:3px;--d:-1s;--t:14s"></span>
+          <span style="--x:79%;--y:44%;--s:4px;--d:-9s;--t:20s"></span>
+          <span style="--x:86%;--y:16%;--s:3px;--d:-4s;--t:13s"></span>
+          <span style="--x:92%;--y:68%;--s:5px;--d:-7s;--t:17s"></span>
+          <span style="--x:97%;--y:34%;--s:3px;--d:-12s;--t:15s"></span>
+        </div>
+      </div>
+
       <div class="container hero__grid">
 
+        <!-- ---------- LEFT: headline, description, CTAs, role badges -------- -->
         <div class="hero__content">
           <p class="badge reveal" data-reveal>
             <span class="badge__pulse"></span> Available for new projects · 2026
           </p>
 
           <h1 class="hero__title">
-            <span class="line" data-reveal><span>Helping Brands Grow</span></span>
-            <span class="line" data-reveal><span>Through <em class="grad">Strategic</em></span></span>
-            <span class="line" data-reveal><span><em class="grad">Social Media</em>, Creative</span></span>
-            <span class="line" data-reveal><span>Video Editing &amp; High-</span></span>
-            <span class="line" data-reveal><span>Converting Visual Content.</span></span>
+            <span class="line" data-reveal><span>Creating <em class="grad">Content</em></span></span>
+            <span class="line" data-reveal><span>That <em class="grad">Builds Brands</em>.</span></span>
           </h1>
 
           <p class="hero__sub reveal" data-reveal data-delay="120">
-            I create engaging social media content, professional videos and eye-catching designs
-            that help businesses attract customers and increase engagement — from the first hook
-            to the metric that proves it worked.
+            I help businesses grow through strategic social media management, engaging video
+            editing and professional graphic design — content built to reach the right people
+            and turn their attention into customers.
           </p>
 
           <div class="hero__actions reveal" data-reveal data-delay="200">
             <a class="btn btn--primary" href="#portfolio" data-magnetic>
               <span>View Portfolio</span><svg class="ico"><use href="#i-arrow-r"/></svg>
             </a>
-            <!-- TODO: swap "#contact" for your Calendly / TidyCal booking link -->
             <a class="btn btn--ghost" href="#contact" data-magnetic>
-              <span class="btn__play"><svg class="ico"><use href="#i-play"/></svg></span>
-              <span>Book a Call</span>
+              <span>Hire Me</span><svg class="ico"><use href="#i-arrow-ur"/></svg>
             </a>
           </div>
 
-          <!-- Trust strip: instant credibility above the fold -->
-          <ul class="hero__trust reveal" data-reveal data-delay="280">
-            <li><strong data-count="100" data-suffix="+">0</strong><span>Projects delivered</span></li>
-            <li><strong data-count="4" data-suffix="+">0</strong><span>Years experience</span></li>
-            <li><strong data-count="95" data-suffix="%">0</strong><span>Client satisfaction</span></li>
+          <!-- Role badges: what I actually do, scannable in one glance -->
+          <ul class="hero__roles reveal" data-reveal data-delay="280">
+            <li><svg class="ico"><use href="#i-check"/></svg> Social Media Manager</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Video Editor</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Photo Editor</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Content Strategist</li>
           </ul>
         </div>
 
-        <!-- Animated workspace scene: laptop + editing timeline + analytics +
-             floating platform orbs and tool chips. Pure CSS/SVG, decorative. -->
-        <div class="hero__scene" aria-hidden="true">
-          <div class="scene" data-tilt>
+        <!-- ---------- RIGHT: portrait composition ---------------------------
+             Circular portrait inside a gradient ring on a glass card, with
+             decorative shapes behind it and floating tool badges around it.
+             Everything except the <img> is decorative.
+             ---------------------------------------------------------------- -->
+        <div class="hero__visual">
+          <!-- ==================================================================
+               SWAP THE PHOTO HERE — two matching values on adjacent lines:
+                 1. --photo   (feeds the blurred depth-of-field backdrop)
+                 2. <img src> (the portrait itself)
+               Use a square image, 760x760+, subject centred.
+               ================================================================== -->
+          <div class="portrait" style="--photo: url('assets/img/profile.svg')">
 
-            <!-- Laptop with a live-looking video editor -->
-            <div class="laptop" data-parallax="0.05">
-              <div class="laptop__lid">
-                <div class="laptop__screen">
-                  <div class="editor">
-                    <div class="editor__bar">
-                      <i></i><i></i><i></i>
-                      <span>reel_final_v3.prproj</span>
-                    </div>
-                    <div class="editor__stage">
-                      <div class="editor__preview">
-                        <span class="editor__play"><svg class="ico"><use href="#i-play"/></svg></span>
-                        <div class="editor__caption"><b></b><b></b></div>
-                      </div>
-                      <div class="editor__side">
-                        <div class="editor__meter"><span style="--h:62%"></span><span style="--h:88%"></span><span style="--h:44%"></span><span style="--h:96%"></span></div>
-                        <div class="editor__swatch"></div>
-                        <div class="editor__swatch editor__swatch--2"></div>
-                      </div>
-                    </div>
-                    <div class="editor__timeline">
-                      <div class="track"><span class="clip clip--v" style="--x:0%;--w:34%"></span><span class="clip clip--v" style="--x:37%;--w:26%"></span><span class="clip clip--v" style="--x:66%;--w:30%"></span></div>
-                      <div class="track"><span class="clip clip--a" style="--x:4%;--w:58%"></span><span class="clip clip--a" style="--x:64%;--w:30%"></span></div>
-                      <div class="track"><span class="clip clip--t" style="--x:12%;--w:18%"></span><span class="clip clip--t" style="--x:40%;--w:22%"></span><span class="clip clip--t" style="--x:70%;--w:16%"></span></div>
-                      <span class="playhead"></span>
-                    </div>
-                  </div>
-                </div>
+            <!-- behind the portrait: glow, glass card, geometric shapes -->
+            <span class="portrait__glow" aria-hidden="true"></span>
+            <span class="portrait__card" aria-hidden="true" data-pointer="0.012"></span>
+            <span class="portrait__shape portrait__shape--ring" aria-hidden="true" data-pointer="0.02"></span>
+            <span class="portrait__shape portrait__shape--square" aria-hidden="true" data-pointer="0.03"></span>
+            <span class="portrait__shape portrait__shape--dots" aria-hidden="true" data-pointer="0.026"></span>
+
+            <!-- depth of field: a blurred copy of the same photo (same URL, so
+                 it costs no extra request) sitting just outside the circle -->
+            <span class="portrait__dof" aria-hidden="true"></span>
+
+            <!-- the portrait itself: gradient ring + circular crop.
+                 The grade/rim layers sit over the photo and are pure CSS, so
+                 the pixels — and the face — are never modified. -->
+            <div class="portrait__ring" data-pointer="0.018">
+              <div class="portrait__frame">
+                <img class="hero-profile" src="assets/img/profile.svg"
+                     alt="June Rey Claros, freelance social media manager, video editor and photo editor"
+                     width="800" height="800" fetchpriority="high" decoding="async">
+                <span class="portrait__grade" aria-hidden="true"></span>
+                <span class="portrait__rim" aria-hidden="true"></span>
               </div>
-              <div class="laptop__base"></div>
             </div>
 
-            <!-- Floating analytics card -->
-            <div class="float-card float-card--analytics" data-parallax="0.12">
-              <div class="float-card__head">
-                <span>Reach · 30 days</span>
-                <b class="up"><svg class="ico"><use href="#i-trend"/></svg> +214%</b>
-              </div>
-              <div class="chartbars">
-                <span style="--h:38%"></span><span style="--h:54%"></span><span style="--h:44%"></span>
-                <span style="--h:72%"></span><span style="--h:60%"></span><span style="--h:88%"></span><span style="--h:100%"></span>
-              </div>
-              <svg class="sparkline" viewBox="0 0 200 48" preserveAspectRatio="none">
-                <path d="M2 42 L34 34 L66 38 L98 22 L130 26 L162 12 L198 6" fill="none" stroke="url(#sparkGrad)" stroke-width="3" stroke-linecap="round"/>
-                <defs><linearGradient id="sparkGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#A855F7"/>
-                </linearGradient></defs>
-              </svg>
-            </div>
+            <!-- platform orbs: icon-only so nine badges don't read as clutter -->
+            <span class="social-orb social-orb--ig" style="--tool:#DD2A7B" data-pointer="0.058" title="Instagram">
+              <svg class="ico"><use href="#i-instagram"/></svg>
+            </span>
+            <span class="social-orb social-orb--tt" style="--tool:#38BDF8" data-pointer="0.052" title="TikTok">
+              <svg class="ico"><use href="#i-tiktok"/></svg>
+            </span>
+            <span class="social-orb social-orb--fb" style="--tool:#1877F2" data-pointer="0.048" title="Facebook">
+              <svg class="ico"><use href="#i-facebook"/></svg>
+            </span>
 
-            <!-- Floating engagement stat -->
-            <div class="float-card float-card--stat" data-parallax="0.18">
-              <span class="float-card__label">Avg. engagement</span>
-              <strong class="float-card__value">8.4<small>%</small></strong>
-              <span class="float-card__foot">vs 1.9% industry avg</span>
-            </div>
-
-            <!-- Orbiting platform icons -->
-            <span class="orb orb--ig"  style="--d:0s"><svg class="ico"><use href="#i-instagram"/></svg></span>
-            <span class="orb orb--tt"  style="--d:-1.6s"><svg class="ico"><use href="#i-tiktok"/></svg></span>
-            <span class="orb orb--yt"  style="--d:-3.2s"><svg class="ico"><use href="#i-youtube"/></svg></span>
-
-            <!-- Tool chips -->
-            <span class="chip chip--canva">Canva</span>
-            <span class="chip chip--capcut">CapCut</span>
-            <span class="chip chip--pr">Premiere Pro</span>
-            <span class="chip chip--ps">Photoshop</span>
+            <!-- floating tool badges (decorative labels, not links) -->
+            <span class="tech-badge tech-badge--canva" style="--tool:#00C4CC" data-pointer="0.05">
+              <b class="tech-badge__mark" aria-hidden="true">C</b> Canva
+            </span>
+            <span class="tech-badge tech-badge--pr" style="--tool:#9999FF" data-pointer="0.06">
+              <b class="tech-badge__mark tech-badge__mark--pr" aria-hidden="true">Pr</b> Premiere Pro
+            </span>
+            <span class="tech-badge tech-badge--ps" style="--tool:#31A8FF" data-pointer="0.045">
+              <b class="tech-badge__mark tech-badge__mark--ps" aria-hidden="true">Ps</b> Photoshop
+            </span>
+            <span class="tech-badge tech-badge--capcut" style="--tool:#F0F0F0" data-pointer="0.055">
+              <b class="tech-badge__mark tech-badge__mark--capcut" aria-hidden="true">✂</b> CapCut
+            </span>
+            <span class="tech-badge tech-badge--meta" style="--tool:#0081FB" data-pointer="0.04">
+              <b class="tech-badge__mark tech-badge__mark--meta" aria-hidden="true">∞</b> Meta Business Suite
+            </span>
+            <span class="tech-badge tech-badge--gpt" style="--tool:#10A37F" data-pointer="0.05">
+              <b class="tech-badge__mark tech-badge__mark--gpt" aria-hidden="true">❋</b> ChatGPT
+            </span>
           </div>
         </div>
       </div>
@@ -405,7 +450,6 @@
 
         <div class="about__media reveal" data-reveal>
           <div class="about__frame" data-tilt>
-            <!-- TODO: replace portrait.svg with a real photo (720x880 works best) -->
             <img src="assets/img/about/portrait.svg" alt="Portrait of June Rey Claros, freelance social media manager and video editor" width="720" height="880" loading="lazy" decoding="async">
             <div class="about__glow"></div>
           </div>
@@ -1163,7 +1207,9 @@
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="#hero" class="nav__logo" aria-label="JRC — back to top">
-          <img src="assets/img/logo/monogram-white.png" alt="" width="40" height="40" class="nav__logo-mark">
+          <!-- two marks, one per theme: a white monogram vanishes on light -->
+        <img src="assets/img/logo/monogram-white.png" alt="" width="40" height="40" class="nav__logo-mark nav__logo-mark--dark">
+        <img src="assets/img/logo/monogram.png" alt="" width="40" height="40" class="nav__logo-mark nav__logo-mark--light">
           <span class="nav__logo-text">June Rey<strong>Claros</strong></span>
         </a>
         <p>Social media management, video editing and content strategy for brands that want to be remembered.</p>

@@ -8,13 +8,15 @@
      01. Helpers & environment
      02. Preloader
      03. Scroll reveal (IntersectionObserver)
+     03b. Theme toggle (dark / light)
      04. Navigation (sticky, drawer, scroll-spy)
      05. Scroll progress + back to top
      06. Animated counters
      07. Portfolio filtering
      08. Testimonial slider (autoplay · drag · keyboard)
      09. Process timeline progress
-     10. Parallax layers
+     10. Parallax layers (scroll)
+     10b. Pointer parallax (hero, mouse-driven)
      11. Micro-interactions (magnetic, spotlight, tilt, cursor)
      12. Contact form (validation + submit)
      13. Misc (footer year, smooth anchors)
@@ -150,6 +152,74 @@
         if (!el.classList.contains('is-visible') && inView(el)) { show(el); io.unobserve(el); }
       });
     });
+  })();
+
+
+  /* ========================================================================
+     03b. THEME TOGGLE
+     <html data-theme> is already set by the inline bootstrap in <head>; this
+     only handles switching, persistence and keeping the browser chrome in
+     step. The .is-theming class scopes the colour cross-fade (see main.css).
+     ==================================================================== */
+  (function theme() {
+    var root = document.documentElement;
+    var btn = $('#themeToggle');
+    var KEY = 'jrc-theme';
+    var BG = { dark: '#080B12', light: '#F5F8FD' };
+    var timer = null;
+
+    function current() { return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
+
+    function syncChrome(mode) {
+      // a single dynamic meta beats the media-based ones when the user has
+      // explicitly overridden their OS preference
+      var meta = document.getElementById('themeColorMeta');
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('name', 'theme-color');
+        meta.id = 'themeColorMeta';
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', BG[mode] || BG.dark);
+
+      if (btn) {
+        var toLight = mode === 'dark';
+        btn.setAttribute('aria-label', toLight ? 'Switch to light theme' : 'Switch to dark theme');
+        btn.setAttribute('title', toLight ? 'Switch to light theme' : 'Switch to dark theme');
+        btn.setAttribute('aria-pressed', String(mode === 'light'));
+      }
+    }
+
+    function apply(mode, animate) {
+      if (animate && !reduceMotion) {
+        root.classList.add('is-theming');
+        clearTimeout(timer);
+        timer = setTimeout(function () { root.classList.remove('is-theming'); }, 400);
+      }
+      root.setAttribute('data-theme', mode);
+      syncChrome(mode);
+    }
+
+    syncChrome(current());
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        apply(next, true);
+        try { localStorage.setItem(KEY, next); } catch (e) { /* private mode */ }
+      });
+    }
+
+    // follow the OS only while the visitor hasn't made an explicit choice
+    var mq = window.matchMedia('(prefers-color-scheme: light)');
+    var onSystem = function (e) {
+      var saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (err) { /* ignore */ }
+      if (saved) return;
+      apply(e.matches ? 'light' : 'dark', true);
+    };
+    if (mq.addEventListener) mq.addEventListener('change', onSystem);
+    else if (mq.addListener) mq.addListener(onSystem);
   })();
 
 
@@ -530,6 +600,58 @@
         el.style.translate = '0 ' + (-centerOffset * speed).toFixed(1) + 'px';
       });
     });
+  })();
+
+
+  /* ========================================================================
+     10b. POINTER PARALLAX
+     Hero layers drift with the mouse. Writes the `translate` property (not
+     `transform`) so it composes with the CSS float animations instead of
+     overwriting them. Values come from data-pointer="0.05" (a strength
+     fraction); the rAF loop eases toward the target and stops when settled.
+     ==================================================================== */
+  (function pointerParallax() {
+    if (!finePointer || reduceMotion) return;
+
+    var scope = $('.hero');
+    if (!scope) return;
+    var layers = $$('[data-pointer]', scope);
+    if (!layers.length) return;
+
+    var MAX = 600;            // strength fraction → pixels of travel
+    var tx = 0, ty = 0;       // target, -0.5 … 0.5
+    var cx = 0, cy = 0;       // current, eased
+    var raf = null;
+
+    /* One easing step + write. Returns true while still catching up. */
+    function step() {
+      cx += (tx - cx) * 0.08;
+      cy += (ty - cy) * 0.08;
+      layers.forEach(function (el) {
+        var s = parseFloat(el.getAttribute('data-pointer')) || 0;
+        el.style.translate =
+          (cx * s * MAX).toFixed(2) + 'px ' + (cy * s * MAX).toFixed(2) + 'px';
+      });
+      return Math.abs(tx - cx) > 0.0008 || Math.abs(ty - cy) > 0.0008;
+    }
+    function loop() { raf = step() ? window.requestAnimationFrame(loop) : null; }
+
+    /* Step synchronously on every pointer move so the layers track the cursor
+       even when frames are throttled, and let the rAF loop smooth the motion
+       in between events. */
+    function kick() {
+      step();
+      if (!raf) raf = window.requestAnimationFrame(loop);
+    }
+
+    scope.addEventListener('mousemove', function (e) {
+      var r = scope.getBoundingClientRect();
+      tx = (e.clientX - r.left) / r.width - 0.5;
+      ty = (e.clientY - r.top) / r.height - 0.5;
+      kick();
+    });
+    // drift back to centre when the pointer leaves the hero
+    scope.addEventListener('mouseleave', function () { tx = 0; ty = 0; kick(); });
   })();
 
 

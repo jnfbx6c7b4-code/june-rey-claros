@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img">
   <defs>
     <linearGradient id="bg7" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#111827"/><stop offset=".55" stop-color="#374151"/><stop offset="1" stop-color="#0B0B0F"/>
+      <stop offset="0" stop-color="#0F1A2B"/><stop offset=".55" stop-color="#2B3B54"/><stop offset="1" stop-color="#080B12"/>
     </linearGradient>
     <linearGradient id="gl7" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#ffffff" stop-opacity=".18"/><stop offset="1" stop-color="#ffffff" stop-opacity=".02"/>
@@ -15,20 +15,20 @@
   </defs>
   <rect width="1200" height="800" fill="url(#bg7)"/>
   <g filter="url(#bl7)" opacity=".75">
-    <circle cx="180" cy="120" r="150" fill="#0B0B0F" opacity=".55"/>
-    <circle cx="1040" cy="700" r="180" fill="#111827" opacity=".5"/>
+    <circle cx="180" cy="120" r="150" fill="#080B12" opacity=".55"/>
+    <circle cx="1040" cy="700" r="180" fill="#0F1A2B" opacity=".5"/>
   </g>
   <rect width="1200" height="800" fill="url(#rd7)"/>
   <g transform="translate(0,84)">
 
   <g>
-    <rect x="72" y="104" width="1056" height="440" rx="24" fill="#0B0B0F" opacity=".8"/>
+    <rect x="72" y="104" width="1056" height="440" rx="24" fill="#080B12" opacity=".8"/>
     <rect x="72" y="104" width="1056" height="440" rx="24" fill="url(#gl7)"/>
     <rect x="72.5" y="104.5" width="1055" height="439" rx="24" fill="none" stroke="#fff" stroke-opacity=".24"/>
     <rect x="72" y="104" width="528" height="440" fill="#000" opacity=".38"/>
     <line x1="600" y1="104" x2="600" y2="544" stroke="#fff" stroke-opacity=".8" stroke-width="3"/>
     <circle cx="600" cy="324" r="30" fill="#fff" opacity=".95"/>
-    <path d="M592 314 L580 324 L592 334 M608 314 L620 324 L608 334" fill="none" stroke="#0B0B0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M592 314 L580 324 L592 334 M608 314 L620 324 L608 334" fill="none" stroke="#080B12" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     <text x="120" y="164" font-family="Poppins,sans-serif" font-size="18" fill="#fff" opacity=".55" letter-spacing="3">BEFORE</text>
     <text x="1080" y="164" text-anchor="end" font-family="Poppins,sans-serif" font-size="18" fill="#fff" opacity=".85" letter-spacing="3">AFTER</text>
     <circle cx="336" cy="330" r="120" fill="#fff" opacity=".07"/>

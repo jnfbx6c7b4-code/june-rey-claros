@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img">
   <defs>
     <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#4C1D95"/><stop offset=".55" stop-color="#7C3AED"/><stop offset="1" stop-color="#1E1B4B"/>
+      <stop offset="0" stop-color="#1B3A6B"/><stop offset=".55" stop-color="#6492D8"/><stop offset="1" stop-color="#12244A"/>
     </linearGradient>
     <linearGradient id="gl1" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#ffffff" stop-opacity=".18"/><stop offset="1" stop-color="#ffffff" stop-opacity=".02"/>
@@ -15,14 +15,14 @@
   </defs>
   <rect width="1200" height="800" fill="url(#bg1)"/>
   <g filter="url(#bl1)" opacity=".75">
-    <circle cx="180" cy="120" r="150" fill="#1E1B4B" opacity=".55"/>
-    <circle cx="1040" cy="700" r="180" fill="#4C1D95" opacity=".5"/>
+    <circle cx="180" cy="120" r="150" fill="#12244A" opacity=".55"/>
+    <circle cx="1040" cy="700" r="180" fill="#1B3A6B" opacity=".5"/>
   </g>
   <rect width="1200" height="800" fill="url(#rd1)"/>
   <g transform="translate(0,84)">
 
   <g>
-    <rect x="64" y="150" width="164" height="164" rx="22" fill="#0B0B0F" opacity=".8"/>
+    <rect x="64" y="150" width="164" height="164" rx="22" fill="#080B12" opacity=".8"/>
     <rect x="64" y="150" width="164" height="164" rx="22" fill="url(#gl1)"/>
     <rect x="64.5" y="150.5" width="163" height="163" rx="22" fill="none" stroke="#fff" stroke-opacity=".22"/>
     <rect x="86" y="186" width="110" height="14" rx="7" fill="#fff" opacity=".55"/>
@@ -30,7 +30,7 @@
     <circle cx="146" cy="278" r="22" fill="#fff" opacity=".16"/>
   </g>
   <g>
-    <rect x="250" y="172" width="164" height="164" rx="22" fill="#0B0B0F" opacity=".8"/>
+    <rect x="250" y="172" width="164" height="164" rx="22" fill="#080B12" opacity=".8"/>
     <rect x="250" y="172" width="164" height="164" rx="22" fill="url(#gl1)"/>
     <rect x="250.5" y="172.5" width="163" height="163" rx="22" fill="none" stroke="#fff" stroke-opacity=".22"/>
     <rect x="272" y="208" width="102" height="14" rx="7" fill="#fff" opacity=".55"/>
@@ -38,7 +38,7 @@
     <circle cx="332" cy="300" r="22" fill="#fff" opacity=".16"/>
   </g>
   <g>
-    <rect x="436" y="150" width="164" height="164" rx="22" fill="#0B0B0F" opacity=".8"/>
+    <rect x="436" y="150" width="164" height="164" rx="22" fill="#080B12" opacity=".8"/>
     <rect x="436" y="150" width="164" height="164" rx="22" fill="url(#gl1)"/>
     <rect x="436.5" y="150.5" width="163" height="163" rx="22" fill="none" stroke="#fff" stroke-opacity=".22"/>
     <rect x="458" y="186" width="94" height="14" rx="7" fill="#fff" opacity=".55"/>
@@ -46,7 +46,7 @@
     <circle cx="518" cy="278" r="22" fill="#fff" opacity=".16"/>
   </g>
   <g>
-    <rect x="622" y="172" width="164" height="164" rx="22" fill="#0B0B0F" opacity=".8"/>
+    <rect x="622" y="172" width="164" height="164" rx="22" fill="#080B12" opacity=".8"/>
     <rect x="622" y="172" width="164" height="164" rx="22" fill="url(#gl1)"/>
     <rect x="622.5" y="172.5" width="163" height="163" rx="22" fill="none" stroke="#fff" stroke-opacity=".22"/>
     <rect x="644" y="208" width="86" height="14" rx="7" fill="#fff" opacity=".55"/>
@@ -54,7 +54,7 @@
     <circle cx="704" cy="300" r="22" fill="#fff" opacity=".16"/>
   </g>
   <g>
-    <rect x="808" y="150" width="164" height="164" rx="22" fill="#0B0B0F" opacity=".8"/>
+    <rect x="808" y="150" width="164" height="164" rx="22" fill="#080B12" opacity=".8"/>
     <rect x="808" y="150" width="164" height="164" rx="22" fill="url(#gl1)"/>
     <rect x="808.5" y="150.5" width="163" height="163" rx="22" fill="none" stroke="#fff" stroke-opacity=".22"/>
     <rect x="830" y="186" width="78" height="14" rx="7" fill="#fff" opacity=".55"/>
@@ -62,7 +62,7 @@
     <circle cx="890" cy="278" r="22" fill="#fff" opacity=".16"/>
   </g>
   <g>
-    <rect x="994" y="172" width="164" height="164" rx="22" fill="#0B0B0F" opacity=".8"/>
+    <rect x="994" y="172" width="164" height="164" rx="22" fill="#080B12" opacity=".8"/>
     <rect x="994" y="172" width="164" height="164" rx="22" fill="url(#gl1)"/>
     <rect x="994.5" y="172.5" width="163" height="163" rx="22" fill="none" stroke="#fff" stroke-opacity=".22"/>
     <rect x="1016" y="208" width="70" height="14" rx="7" fill="#fff" opacity=".55"/>
