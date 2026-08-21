@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================================
+  JRC — Freelance Social Media Manager, Video Editor & Content Strategist
+  Premium dark portfolio · single-page · vanilla HTML/CSS/JS (no jQuery)
+  ----------------------------------------------------------------------------
+  CONFIGURE BEFORE LAUNCH (search for "TODO:" to find each one)
+    1. Domain             — <link rel="canonical">, og:url, JSON-LD "url"
+    2. Email / WhatsApp   — DONE (clarosjunerey143@gmail.com / +63 924 210 5866)
+    3. Social profile URLs— DONE (Facebook, Instagram, LinkedIn)
+    4. Booking link       — "Book a Call" button in the hero (Calendly / TidyCal)
+    5. Form endpoint      — <form data-endpoint> (Formspree / Getform / Basin)
+    6. Portfolio artwork  — assets/img/work/*.svg  (drop in real JPGs, keep names)
+    7. Testimonials       — replace the PLACEHOLDER quotes with real client ones
+    8. og-cover image     — 1200x630 png at assets/img/og-cover.png
+  ============================================================================
+-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080B12" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F5F8FD" media="(prefers-color-scheme: light)">
+
+  <!-- ===== THEME BOOTSTRAP =================================================
+       Runs before any CSS is applied so the correct theme is on <html> at
+       first paint — otherwise the page flashes the wrong colours. Saved
+       choice wins; otherwise follow the OS setting.
+       ==================================================================== -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('jrc-theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <!-- ===== PRIMARY SEO ===================================================== -->
+  <title>June Rey Claros — Social Media Manager, Video Editor & Content Strategist</title>
+  <meta name="description"
+    content="Freelance social media manager, short-form video editor and content strategist helping startups, agencies, coaches, real estate and e-commerce brands grow with content that converts.">
+  <meta name="author" content="June Rey Claros">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <!-- TODO: replace with your live domain -->
+  <link rel="canonical" href="https://junereyclaros.com/">
+
+  <!-- ===== OPEN GRAPH / SOCIAL ============================================= -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="June Rey Claros — JRC">
+  <meta property="og:title" content="June Rey Claros — Social Media Manager, Video Editor & Content Strategist">
+  <meta property="og:description"
+    content="Strategic social media, creative video editing and high-converting visual content for brands that want to grow.">
+  <meta property="og:url" content="https://junereyclaros.com/">
+  <meta property="og:image" content="https://junereyclaros.com/assets/img/favicon/favicon-512.png">
+  <meta property="og:image:alt" content="JRC — freelance social media and video editing studio">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="June Rey Claros — Social Media Manager & Video Editor">
+  <meta name="twitter:description"
+    content="Content strategy, short-form video editing and photo editing that turn attention into customers.">
+  <meta name="twitter:image" content="https://junereyclaros.com/assets/img/favicon/favicon-512.png">
+
+  <!-- ===== FAVICONS ======================================================== -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+
+  <!-- ===== FONTS (Space Grotesk display + Poppins body) ==================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+    media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+  </noscript>
+
+  <!-- ===== STYLES ========================================================== -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/main.responsive.css">
+
+  <!-- Without JS the reveal animations never fire — show everything instead -->
+  <noscript>
+    <style>
+      [data-reveal] { opacity: 1 !important; transform: none !important; }
+      .line > span { transform: none !important; }
+      .preloader { display: none !important; }
+      body.is-loading { overflow: auto !important; }
+    </style>
+  </noscript>
+
+  <!-- ===== STRUCTURED DATA (Person + Services + FAQ) ======================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://junereyclaros.com/#person",
+        "name": "June Rey Claros",
+        "alternateName": "JRC",
+        "url": "https://junereyclaros.com/",
+        "image": "https://junereyclaros.com/assets/img/favicon/favicon-512.png",
+        "jobTitle": "Social Media Manager, Video Editor & Content Strategist",
+        "email": "mailto:clarosjunerey143@gmail.com",
+        "knowsAbout": ["Social Media Management","Short-form Video Editing","Photo Editing","Content Strategy","Brand Design","Paid Social Creative"],
+        "sameAs": [
+          "https://www.instagram.com/jaaaww.kneeee/",
+          "https://www.linkedin.com/in/june-rey-claros-2996b8176/",
+          "https://www.facebook.com/juniieeeimnida"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://junereyclaros.com/#service",
+        "name": "JRC — Social Media & Content Studio",
+        "description": "Freelance social media management, video editing, photo editing and content strategy for businesses, startups, agencies, personal brands, coaches, real estate and e-commerce.",
+        "url": "https://junereyclaros.com/",
+        "founder": { "@id": "https://junereyclaros.com/#person" },
+        "areaServed": "Worldwide",
+        "priceRange": "$$",
+        "availableLanguage": "English",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Management" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Short-form Video Editing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Photo Editing & Retouching" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Content Strategy" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Content Calendar Management" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Design" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "YouTube Editing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Thumbnail Design" } }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://junereyclaros.com/",
+        "name": "June Rey Claros — JRC",
+        "publisher": { "@id": "https://junereyclaros.com/#person" }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="is-loading">
+  <!-- Accessibility: jump straight to content for keyboard / screen-reader users -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ========================================================================
+       SVG ICON SPRITE — every icon on the page is a <use> of one of these
+       symbols. One HTTP request, zero icon-font weight, fully styleable.
+       ==================================================================== -->
+  <svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+    <defs>
+      <!-- brand / social -->
+      <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M16.4 3c.4 2.2 2 3.8 4.2 4.1v3.1c-1.6.05-3.1-.36-4.3-1.15v6.03A5.98 5.98 0 1 1 10.3 9.1c.32 0 .63.03.94.08v3.19a2.85 2.85 0 1 0 2 2.72V3h3.16z"/></symbol>
+      <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><path d="M9.75 15.02V8.48l5.75 3.27-5.75 3.27z"/></symbol>
+      <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M20.5 3.5a10 10 0 0 0-16.9 10.7L2 22l7.9-1.5A10 10 0 1 0 20.5 3.5z"/><path d="M8.6 8.1c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .7.6l.8 2c.1.2.1.4 0 .6l-.5.7c-.1.2-.2.3 0 .6a7.4 7.4 0 0 0 3.2 2.7c.3.1.5.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.9 1c.3.1.4.3.4.5 0 .8-.6 1.6-1.3 1.8-1 .3-2.3.2-4.6-1a11 11 0 0 1-4-4.4c-.6-1.3-.6-2.4.2-3.6z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6.5 12 13.2 2 6.5"/></symbol>
+
+      <!-- ui -->
+      <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></symbol>
+      <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m12 5 7 7-7 7"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3.1 6.26 6.9 1-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.87-5-4.87 6.9-1z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-quote" viewBox="0 0 24 24"><path d="M9.6 5C6.6 6.6 4.7 9.6 4.7 13.2c0 3.4 2 5.8 4.6 5.8 2.3 0 4-1.7 4-3.9 0-2.1-1.5-3.7-3.5-3.7-.3 0-.7 0-1 .1.4-1.7 2-3.6 3.7-4.6L9.6 5zm9 0c-3 1.6-4.9 4.6-4.9 8.2 0 3.4 2 5.8 4.6 5.8 2.3 0 4-1.7 4-3.9 0-2.1-1.5-3.7-3.5-3.7-.3 0-.7 0-1 .1.4-1.7 2-3.6 3.7-4.6L18.6 5z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m20 6-11 11-5-5"/></symbol>
+      <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+      <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6 18 18M18 6 6 18"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></symbol>
+      <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h8l-1 8 10-12h-8z"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+
+      <!-- services -->
+      <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></symbol>
+      <symbol id="i-film" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></symbol>
+      <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="m21 15-5-5L5 21"/></symbol>
+      <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.1 6.4-6.4 2.1 2.1-6.4z"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24"><path d="m12 19 7-7 3 3-7 7z"/><path d="M18 13 16.5 5.5 2 2l3.5 14.5L13 18z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></symbol>
+
+      <!-- process -->
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><path d="M1 6l7-4 8 4 7-4v16l-7 4-8-4-7 4z"/><path d="M8 2v16M16 6v16"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></symbol>
+      <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></symbol>
+      <symbol id="i-trend" viewBox="0 0 24 24"><path d="m23 6-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ========================================================================
+       PRELOADER — brand mark + progress; removed as soon as assets settle
+       ==================================================================== -->
+  <div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Loading">
+    <div class="preloader__mark">JRC</div>
+    <div class="preloader__bar"><span id="preloaderFill"></span></div>
+    <div class="preloader__pct" id="preloaderPct">0%</div>
+  </div>
+
+  <!-- Reading-progress bar pinned to the very top of the viewport -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"><span></span></div>
+
+  <!-- Atmosphere layers: film grain + drifting aurora blobs (decorative only) -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true">
+    <span class="aurora__blob aurora__blob--1" data-parallax="0.06"></span>
+    <span class="aurora__blob aurora__blob--2" data-parallax="0.1"></span>
+    <span class="aurora__blob aurora__blob--3" data-parallax="0.04"></span>
+  </div>
+
+  <!-- Custom cursor (desktop, fine-pointer devices only — hidden on touch) -->
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+
+  <!-- ========================================================================
+       HEADER / STICKY NAVBAR
+       ==================================================================== -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="#hero" aria-label="JRC — back to top">
+        <!-- two marks, one per theme: a white monogram vanishes on light -->
+        <img src="assets/img/logo/monogram-white.png" alt="" width="40" height="40" class="nav__logo-mark nav__logo-mark--dark">
+        <img src="assets/img/logo/monogram.png" alt="" width="40" height="40" class="nav__logo-mark nav__logo-mark--light">
+        <span class="nav__logo-text">June Rey<strong>Claros</strong></span>
+      </a>
+
+      <nav class="nav__menu" id="navMenu" aria-label="Primary">
+        <ul>
+          <li><a class="nav__link is-active" href="#hero">Home</a></li>
+          <li><a class="nav__link" href="#about">About</a></li>
+          <li><a class="nav__link" href="#services">Services</a></li>
+          <li><a class="nav__link" href="#portfolio">Portfolio</a></li>
+          <li><a class="nav__link" href="#testimonials">Testimonials</a></li>
+          <li><a class="nav__link" href="#process">Process</a></li>
+          <li><a class="nav__link" href="#tools">Tools</a></li>
+          <li><a class="nav__link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav__actions">
+        <!-- Theme toggle: shows the icon for the theme you'd switch TO -->
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
+          <span class="theme-toggle__track" aria-hidden="true">
+            <svg class="ico theme-toggle__sun"><use href="#i-sun"/></svg>
+            <svg class="ico theme-toggle__moon"><use href="#i-moon"/></svg>
+            <span class="theme-toggle__knob"></span>
+          </span>
+        </button>
+
+        <a class="btn btn--primary btn--sm" href="#contact" data-magnetic>
+          <span>Hire Me</span><svg class="ico"><use href="#i-arrow-ur"/></svg>
+        </a>
+        <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
+          <svg class="ico ico--menu"><use href="#i-menu"/></svg>
+          <svg class="ico ico--close"><use href="#i-close"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ======================================================================
+         HERO — headline, dual CTA, trust strip + animated workspace scene
+         ================================================================== -->
+    <section class="hero" id="hero">
+
+      <!-- Decorative hero backdrop: animated gradient mesh, a very subtle grid
+           and slow-drifting particles. Purely visual, hidden from AT. -->
+      <div class="hero__bg" aria-hidden="true">
+        <span class="hero__mesh"></span>
+        <span class="hero__pattern"></span>
+        <div class="particles">
+          <span style="--x:6%;--y:18%;--s:4px;--d:0s;--t:14s"></span>
+          <span style="--x:14%;--y:72%;--s:3px;--d:-2s;--t:17s"></span>
+          <span style="--x:22%;--y:38%;--s:5px;--d:-5s;--t:13s"></span>
+          <span style="--x:31%;--y:86%;--s:3px;--d:-8s;--t:19s"></span>
+          <span style="--x:44%;--y:12%;--s:4px;--d:-3s;--t:16s"></span>
+          <span style="--x:52%;--y:64%;--s:3px;--d:-11s;--t:15s"></span>
+          <span style="--x:63%;--y:26%;--s:5px;--d:-6s;--t:18s"></span>
+          <span style="--x:71%;--y:80%;--s:3px;--d:-1s;--t:14s"></span>
+          <span style="--x:79%;--y:44%;--s:4px;--d:-9s;--t:20s"></span>
+          <span style="--x:86%;--y:16%;--s:3px;--d:-4s;--t:13s"></span>
+          <span style="--x:92%;--y:68%;--s:5px;--d:-7s;--t:17s"></span>
+          <span style="--x:97%;--y:34%;--s:3px;--d:-12s;--t:15s"></span>
+        </div>
+      </div>
+
+      <div class="container hero__grid">
+
+        <!-- ---------- LEFT: headline, description, CTAs, role badges -------- -->
+        <div class="hero__content">
+          <p class="badge reveal" data-reveal>
+            <span class="badge__pulse"></span> Available for new projects · 2026
+          </p>
+
+          <h1 class="hero__title">
+            <span class="line" data-reveal><span>Creating <em class="grad">Content</em></span></span>
+            <span class="line" data-reveal><span>That <em class="grad">Builds Brands</em>.</span></span>
+          </h1>
+
+          <p class="hero__sub reveal" data-reveal data-delay="120">
+            I help businesses grow through strategic social media management, engaging video
+            editing and professional graphic design — content built to reach the right people
+            and turn their attention into customers.
+          </p>
+
+          <div class="hero__actions reveal" data-reveal data-delay="200">
+            <a class="btn btn--primary" href="#portfolio" data-magnetic>
+              <span>View Portfolio</span><svg class="ico"><use href="#i-arrow-r"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="#contact" data-magnetic>
+              <span>Hire Me</span><svg class="ico"><use href="#i-arrow-ur"/></svg>
+            </a>
+          </div>
+
+          <!-- Role badges: what I actually do, scannable in one glance -->
+          <ul class="hero__roles reveal" data-reveal data-delay="280">
+            <li><svg class="ico"><use href="#i-check"/></svg> Social Media Manager</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Video Editor</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Photo Editor</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Content Strategist</li>
+          </ul>
+        </div>
+
+        <!-- ---------- RIGHT: portrait composition ---------------------------
+             Circular portrait inside a gradient ring on a glass card, with
+             decorative shapes behind it and floating tool badges around it.
+             Everything except the <img> is decorative.
+             ---------------------------------------------------------------- -->
+        <div class="hero__visual">
+          <!-- ==================================================================
+               SWAP THE PHOTO HERE — two matching values on adjacent lines:
+                 1. --photo   (feeds the blurred depth-of-field backdrop)
+                 2. <img src> (the portrait itself)
+               Use a square image, 760x760+, subject centred.
+               ================================================================== -->
+          <div class="portrait" style="--photo: url('assets/img/profile.svg')">
+
+            <!-- behind the portrait: glow, glass card, geometric shapes -->
+            <span class="portrait__glow" aria-hidden="true"></span>
+            <span class="portrait__card" aria-hidden="true" data-pointer="0.012"></span>
+            <span class="portrait__shape portrait__shape--ring" aria-hidden="true" data-pointer="0.02"></span>
+            <span class="portrait__shape portrait__shape--square" aria-hidden="true" data-pointer="0.03"></span>
+            <span class="portrait__shape portrait__shape--dots" aria-hidden="true" data-pointer="0.026"></span>
+
+            <!-- depth of field: a blurred copy of the same photo (same URL, so
+                 it costs no extra request) sitting just outside the circle -->
+            <span class="portrait__dof" aria-hidden="true"></span>
+
+            <!-- the portrait itself: gradient ring + circular crop.
+                 The grade/rim layers sit over the photo and are pure CSS, so
+                 the pixels — and the face — are never modified. -->
+            <div class="portrait__ring" data-pointer="0.018">
+              <div class="portrait__frame">
+                <img class="hero-profile" src="assets/img/profile.svg"
+                     alt="June Rey Claros, freelance social media manager, video editor and photo editor"
+                     width="800" height="800" fetchpriority="high" decoding="async">
+                <span class="portrait__grade" aria-hidden="true"></span>
+                <span class="portrait__rim" aria-hidden="true"></span>
+              </div>
+            </div>
+
+            <!-- platform orbs: icon-only so nine badges don't read as clutter -->
+            <span class="social-orb social-orb--ig" style="--tool:#DD2A7B" data-pointer="0.058" title="Instagram">
+              <svg class="ico"><use href="#i-instagram"/></svg>
+            </span>
+            <span class="social-orb social-orb--tt" style="--tool:#38BDF8" data-pointer="0.052" title="TikTok">
+              <svg class="ico"><use href="#i-tiktok"/></svg>
+            </span>
+            <span class="social-orb social-orb--fb" style="--tool:#1877F2" data-pointer="0.048" title="Facebook">
+              <svg class="ico"><use href="#i-facebook"/></svg>
+            </span>
+
+            <!-- floating tool badges (decorative labels, not links) -->
+            <span class="tech-badge tech-badge--canva" style="--tool:#00C4CC" data-pointer="0.05">
+              <b class="tech-badge__mark" aria-hidden="true">C</b> Canva
+            </span>
+            <span class="tech-badge tech-badge--pr" style="--tool:#9999FF" data-pointer="0.06">
+              <b class="tech-badge__mark tech-badge__mark--pr" aria-hidden="true">Pr</b> Premiere Pro
+            </span>
+            <span class="tech-badge tech-badge--ps" style="--tool:#31A8FF" data-pointer="0.045">
+              <b class="tech-badge__mark tech-badge__mark--ps" aria-hidden="true">Ps</b> Photoshop
+            </span>
+            <span class="tech-badge tech-badge--capcut" style="--tool:#F0F0F0" data-pointer="0.055">
+              <b class="tech-badge__mark tech-badge__mark--capcut" aria-hidden="true">✂</b> CapCut
+            </span>
+            <span class="tech-badge tech-badge--meta" style="--tool:#0081FB" data-pointer="0.04">
+              <b class="tech-badge__mark tech-badge__mark--meta" aria-hidden="true">∞</b> Meta Business Suite
+            </span>
+            <span class="tech-badge tech-badge--gpt" style="--tool:#10A37F" data-pointer="0.05">
+              <b class="tech-badge__mark tech-badge__mark--gpt" aria-hidden="true">❋</b> ChatGPT
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#about" aria-label="Scroll to about section">
+        <span class="hero__mouse"><i></i></span> Scroll
+      </a>
+    </section>
+
+    <!-- ======================================================================
+         MARQUEE — who I build content for (infinite scrolling strip)
+         ================================================================== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <!-- duplicated once in markup so the loop is seamless -->
+        <div class="marquee__group">
+          <span>Startups</span><i>✦</i><span>Agencies</span><i>✦</i><span>Personal Brands</span><i>✦</i>
+          <span>Coaches</span><i>✦</i><span>Real Estate</span><i>✦</i><span>E-commerce</span><i>✦</i>
+          <span>Local Business</span><i>✦</i>
+        </div>
+        <div class="marquee__group">
+          <span>Startups</span><i>✦</i><span>Agencies</span><i>✦</i><span>Personal Brands</span><i>✦</i>
+          <span>Coaches</span><i>✦</i><span>Real Estate</span><i>✦</i><span>E-commerce</span><i>✦</i>
+          <span>Local Business</span><i>✦</i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         ABOUT — positioning, capability list, credibility
+         ================================================================== -->
+    <section class="section about" id="about">
+      <div class="container about__grid">
+
+        <div class="about__media reveal" data-reveal>
+          <div class="about__frame" data-tilt>
+            <img src="assets/img/about/portrait.svg" alt="Portrait of June Rey Claros, freelance social media manager and video editor" width="720" height="880" loading="lazy" decoding="async">
+            <div class="about__glow"></div>
+          </div>
+          <div class="about__badge glass" data-parallax="0.08">
+            <strong>4+</strong><span>Years crafting content that performs</span>
+          </div>
+          <div class="about__badge about__badge--alt glass" data-parallax="0.14">
+            <svg class="ico"><use href="#i-zap"/></svg><span>24 hr average reply</span>
+          </div>
+        </div>
+
+        <div class="about__body">
+          <p class="eyebrow reveal" data-reveal><span></span> About me</p>
+          <h2 class="section__title reveal" data-reveal>
+            I turn scattered content into a <em class="grad">system that compounds</em>.
+          </h2>
+
+          <div class="about__text reveal" data-reveal data-delay="80">
+            <p>
+              I'm June Rey Claros — a freelance <strong>social media manager, video editor and content
+              strategist</strong> with <strong>4+ years</strong> helping businesses, startups, agencies,
+              coaches, real estate teams and e-commerce brands show up online with intention.
+            </p>
+            <p>
+              Most brands don't have a content problem — they have a <em>consistency and strategy</em>
+              problem. I fix that end to end: research your audience, build the content pillars and
+              calendar, produce and edit the assets, publish on schedule, then read the analytics and
+              double down on whatever is actually driving saves, shares, leads and sales.
+            </p>
+            <p>
+              The result is a feed that looks like one brand, a posting rhythm you can rely on, and
+              short-form video that stops the scroll in the first three seconds.
+            </p>
+          </div>
+
+          <!-- Capability checklist -->
+          <ul class="about__skills reveal" data-reveal data-delay="140">
+            <li><svg class="ico"><use href="#i-check"/></svg> Social media strategy</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Content planning &amp; calendars</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Short-form video editing</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Brand consistency</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Graphic design</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Content optimization</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Audience growth</li>
+            <li><svg class="ico"><use href="#i-check"/></svg> Analytics &amp; reporting</li>
+          </ul>
+
+          <div class="about__cta reveal" data-reveal data-delay="200">
+            <a class="btn btn--primary" href="#contact" data-magnetic><span>Work with me</span><svg class="ico"><use href="#i-arrow-ur"/></svg></a>
+            <a class="btn btn--text" href="#portfolio"><span>See recent work</span><svg class="ico"><use href="#i-arrow-r"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SERVICES — 9 cards with cursor-tracking spotlight + hover lift
+         ================================================================== -->
+    <section class="section services" id="services">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow reveal" data-reveal><span></span> Services</p>
+          <h2 class="section__title reveal" data-reveal>Everything your brand needs to <em class="grad">post, perform and grow</em>.</h2>
+          <p class="section__lead reveal" data-reveal data-delay="80">
+            Pick a single service or hand me the whole content engine — strategy, production and reporting under one roof.
+          </p>
+        </header>
+
+        <div class="svc-grid">
+          <!-- Each card: icon, title, description, capability tags, hover CTA -->
+          <article class="svc-card reveal" data-reveal data-spotlight>
+            <span class="svc-card__icon"><svg class="ico"><use href="#i-share"/></svg></span>
+            <h3>Social Media Management</h3>
+            <p>Full account ownership — planning, posting, captions, hashtags, community replies and monthly reporting across Instagram, Facebook, TikTok and LinkedIn.</p>
+            <ul class="svc-card__tags"><li>Publishing</li><li>Community</li><li>Reporting</li></ul>
+            <span class="svc-card__go"><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+          </article>
+
+          <article class="svc-card reveal" data-reveal data-delay="60" data-spotlight>
+            <span class="svc-card__icon"><svg class="ico"><use href="#i-film"/></svg></span>
+            <h3>Video Editing</h3>
+            <p>Scroll-stopping edits with clean pacing, captions, sound design, colour grading and motion graphics — built for retention, not just for looks.</p>
+            <ul class="svc-card__tags"><li>Premiere Pro</li><li>CapCut</li><li>After Effects</li></ul>
+            <span class="svc-card__go"><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+          </article>
+
+          <article class="svc-card reveal" data-reveal data-delay="120" data-spotlight>
+            <span class="svc-card__icon"><svg class="ico"><use href="#i-image"/></svg></span>
+            <h3>Photo Editing</h3>
+            <p>Retouching, background cleanup, colour grading and product enhancement so every image on your feed and store looks studio-shot.</p>
+            <ul class="svc-card__tags"><li>Retouch</li><li>Colour</li><li>Product</li></ul>
+            <span class="svc-card__go"><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+          </article>
+
+          <article class="svc-card reveal" data-reveal data-spotlight>
+            <span class="svc-card__icon"><svg class="ico"><use href="#i-compass"/></svg></span>
+            <h3>Content Strategy</h3>
+            <p>Audience research, competitor teardown, content pillars, hook frameworks and a funnel that moves followers from discovery to enquiry.</p>
+            <ul class="svc-card__tags"><li>Research</li><li>Pillars</li><li>Funnel</li></ul>
+            <span class="svc-card__go"><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+          </article>
+
+          <article class="svc-card reveal" data-reveal data-delay="60" data-spotlight>
+            <span class="svc-card__icon"><svg class="ico"><use href="#i-calendar"/></svg></span>
+            <h3>Content Calendar</h3>
+            <p>A 30–90 day plan mapped to launches and seasons, batch-produced and scheduled ahead so you never post in a panic again.</p>
+            <ul class="svc-card__tags"><li>Notion</li><li>Batching</li><li>Scheduling</li></ul>
+            <span class="svc-card__go"><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+          </article>
+
+          <article class="svc-card reveal" data-reveal data-delay="120" data-spotlight>
+            <span class="svc-card__icon"><svg class="ico"><use href="#i-pen"/></svg></span>
+            <h3>Brand Design</h3>
+            <p>Visual identity for social — colour, type, templates and layout rules that make your brand recognisable before anyone reads the handle.</p>
+            <ul class="svc-card__tags"><li>Identity</li><li>Templates</li><li>Guidelines</li></ul>
+            <span class="svc-card__go"><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+          </article>
+
+          <article class="svc-card reveal" data-reveal data-spotlight>
+            <span class="svc-card__icon"><svg class="ico"><use href="#i-phone"/></svg></span>
+            <h3>Short-form Reels</h3>
+            <p>Vertical edits for Reels, TikTok and Shorts — hook in three seconds, captions that carry the story, and a CTA that earns the next step.</p>
+            <ul class="svc-card__tags"><li>Hooks</li><li>Captions</li><li>Trends</li></ul>
+            <span class="svc-card__go"><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+          </article>
+
+          <article class="svc-card reveal" data-reveal data-delay="60" data-spotlight>
+            <span class="svc-card__icon"><svg class="ico"><use href="#i-youtube"/></svg></span>
+            <h3>YouTube Editing</h3>
+            <p>Long-form edits with tight storytelling, b-roll, chapters, lower-thirds and end screens — plus Shorts cut from the same footage.</p>
+            <ul class="svc-card__tags"><li>Long-form</li><li>B-roll</li><li>Shorts</li></ul>
+            <span class="svc-card__go"><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+          </article>
+
+          <article class="svc-card reveal" data-reveal data-delay="120" data-spotlight>
+            <span class="svc-card__icon"><svg class="ico"><use href="#i-layers"/></svg></span>
+            <h3>Thumbnail Design</h3>
+            <p>High-contrast, curiosity-driven covers designed and A/B tested for click-through — because the best edit still needs the click.</p>
+            <ul class="svc-card__tags"><li>A/B tested</li><li>High CTR</li><li>On-brand</li></ul>
+            <span class="svc-card__go"><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         PORTFOLIO — filterable premium showcase
+         ================================================================== -->
+    <section class="section work" id="portfolio">
+      <div class="container">
+        <header class="section__head section__head--split">
+          <div>
+            <p class="eyebrow reveal" data-reveal><span></span> Portfolio</p>
+            <h2 class="section__title reveal" data-reveal>Selected work that <em class="grad">earned attention</em>.</h2>
+          </div>
+          <p class="section__lead reveal" data-reveal data-delay="80">
+            A cross-section of social design, paid creative, short-form video and photo work.
+            Filter by what you need built.
+          </p>
+        </header>
+
+        <!-- Filter tabs (JS filters the grid + animates the pill indicator) -->
+        <div class="work__filters reveal" data-reveal role="tablist" aria-label="Filter portfolio by category">
+          <span class="work__pill" aria-hidden="true"></span>
+          <button class="filter is-active" role="tab" aria-selected="true" data-filter="all">All</button>
+          <button class="filter" role="tab" aria-selected="false" data-filter="social">Social Media Designs</button>
+          <button class="filter" role="tab" aria-selected="false" data-filter="instagram">Instagram Posts</button>
+          <button class="filter" role="tab" aria-selected="false" data-filter="ads">Facebook Ads</button>
+          <button class="filter" role="tab" aria-selected="false" data-filter="reels">Video Reels</button>
+          <button class="filter" role="tab" aria-selected="false" data-filter="tiktok">TikTok Videos</button>
+          <button class="filter" role="tab" aria-selected="false" data-filter="shorts">YouTube Shorts</button>
+          <button class="filter" role="tab" aria-selected="false" data-filter="thumbnails">Thumbnails</button>
+          <button class="filter" role="tab" aria-selected="false" data-filter="photo">Photo Editing</button>
+        </div>
+
+        <div class="work__grid" id="workGrid">
+          <!-- Card anatomy: media (zoom on hover) · category · title · client · tools · CTA
+               TODO: replace each assets/img/work/*.svg with a real 1200x800 JPG -->
+
+          <article class="work-card reveal" data-reveal data-cat="instagram social">
+            <a class="work-card__link" href="#contact" aria-label="View project: Carousel system for a coaching brand">
+              <div class="work-card__media">
+                <img src="assets/img/work/instagram-posts.svg" alt="Six-slide Instagram carousel design system in purple and violet" width="1200" height="800" loading="lazy" decoding="async">
+                <span class="work-card__cat">Instagram Posts</span>
+                <span class="work-card__view"><span>View Project</span><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+              </div>
+              <div class="work-card__body">
+                <h3>Carousel System That Tripled Saves</h3>
+                <dl class="work-card__meta">
+                  <div><dt>Client</dt><dd>Mindset Coaching Co.</dd></div>
+                  <div><dt>Software</dt><dd>Canva · Photoshop</dd></div>
+                </dl>
+              </div>
+            </a>
+          </article>
+
+          <article class="work-card reveal" data-reveal data-delay="60" data-cat="reels">
+            <a class="work-card__link" href="#contact" aria-label="View project: Short-form reels pack for a fitness studio">
+              <div class="work-card__media">
+                <img src="assets/img/work/video-reels.svg" alt="Three vertical reel frames with play buttons and a views chart" width="1200" height="800" loading="lazy" decoding="async">
+                <span class="work-card__cat">Video Reels</span>
+                <span class="work-card__view"><span>View Project</span><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+              </div>
+              <div class="work-card__body">
+                <h3>12-Reel Launch Pack · 128K Avg. Views</h3>
+                <dl class="work-card__meta">
+                  <div><dt>Client</dt><dd>Pulse Fitness Studio</dd></div>
+                  <div><dt>Software</dt><dd>CapCut · Premiere Pro</dd></div>
+                </dl>
+              </div>
+            </a>
+          </article>
+
+          <article class="work-card reveal" data-reveal data-delay="120" data-cat="ads social">
+            <a class="work-card__link" href="#contact" aria-label="View project: Meta ad creative set for an e-commerce brand">
+              <div class="work-card__media">
+                <img src="assets/img/work/facebook-ads.svg" alt="Facebook ad creative mockup beside a 3.8x return on ad spend panel" width="1200" height="800" loading="lazy" decoding="async">
+                <span class="work-card__cat">Facebook Ads</span>
+                <span class="work-card__view"><span>View Project</span><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+              </div>
+              <div class="work-card__body">
+                <h3>Meta Ad Creative Set · 3.8x ROAS</h3>
+                <dl class="work-card__meta">
+                  <div><dt>Client</dt><dd>Nordic Home Goods</dd></div>
+                  <div><dt>Software</dt><dd>Photoshop · Illustrator</dd></div>
+                </dl>
+              </div>
+            </a>
+          </article>
+
+          <article class="work-card reveal" data-reveal data-cat="tiktok reels">
+            <a class="work-card__link" href="#contact" aria-label="View project: TikTok growth series for a real estate team">
+              <div class="work-card__media">
+                <img src="assets/img/work/tiktok-videos.svg" alt="Two TikTok phone frames with a 92 percent hook retention panel" width="1200" height="800" loading="lazy" decoding="async">
+                <span class="work-card__cat">TikTok Videos</span>
+                <span class="work-card__view"><span>View Project</span><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+              </div>
+              <div class="work-card__body">
+                <h3>Weekly TikTok Series · 0 → 24K Followers</h3>
+                <dl class="work-card__meta">
+                  <div><dt>Client</dt><dd>Harbour Realty Group</dd></div>
+                  <div><dt>Software</dt><dd>CapCut · Canva</dd></div>
+                </dl>
+              </div>
+            </a>
+          </article>
+
+          <article class="work-card reveal" data-reveal data-delay="60" data-cat="shorts reels">
+            <a class="work-card__link" href="#contact" aria-label="View project: YouTube Shorts repurposing engine">
+              <div class="work-card__media">
+                <img src="assets/img/work/youtube-shorts.svg" alt="Three YouTube Shorts frames beside a 40 plus shorts counter" width="1200" height="800" loading="lazy" decoding="async">
+                <span class="work-card__cat">YouTube Shorts</span>
+                <span class="work-card__view"><span>View Project</span><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+              </div>
+              <div class="work-card__body">
+                <h3>Shorts Repurposing Engine · 40+ Cuts/Month</h3>
+                <dl class="work-card__meta">
+                  <div><dt>Client</dt><dd>Founders Weekly Podcast</dd></div>
+                  <div><dt>Software</dt><dd>Premiere Pro · After Effects</dd></div>
+                </dl>
+              </div>
+            </a>
+          </article>
+
+          <article class="work-card reveal" data-reveal data-delay="120" data-cat="thumbnails">
+            <a class="work-card__link" href="#contact" aria-label="View project: High click-through thumbnail set">
+              <div class="work-card__media">
+                <img src="assets/img/work/thumbnails.svg" alt="Four YouTube thumbnail layouts with play icons and bold titles" width="1200" height="800" loading="lazy" decoding="async">
+                <span class="work-card__cat">Thumbnails</span>
+                <span class="work-card__view"><span>View Project</span><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+              </div>
+              <div class="work-card__body">
+                <h3>Thumbnail Refresh · CTR 4.1% → 9.6%</h3>
+                <dl class="work-card__meta">
+                  <div><dt>Client</dt><dd>Build &amp; Scale Channel</dd></div>
+                  <div><dt>Software</dt><dd>Photoshop</dd></div>
+                </dl>
+              </div>
+            </a>
+          </article>
+
+          <article class="work-card reveal" data-reveal data-cat="photo">
+            <a class="work-card__link" href="#contact" aria-label="View project: Product photo retouching for an e-commerce catalogue">
+              <div class="work-card__media">
+                <img src="assets/img/work/photo-editing.svg" alt="Before and after product retouching comparison with a slider handle" width="1200" height="800" loading="lazy" decoding="async">
+                <span class="work-card__cat">Photo Editing</span>
+                <span class="work-card__view"><span>View Project</span><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+              </div>
+              <div class="work-card__body">
+                <h3>Catalogue Retouch · 180 Product Shots</h3>
+                <dl class="work-card__meta">
+                  <div><dt>Client</dt><dd>Lumen Skincare</dd></div>
+                  <div><dt>Software</dt><dd>Photoshop · Lightroom</dd></div>
+                </dl>
+              </div>
+            </a>
+          </article>
+
+          <article class="work-card reveal" data-reveal data-delay="60" data-cat="social">
+            <a class="work-card__link" href="#contact" aria-label="View project: 90-day content strategy and calendar">
+              <div class="work-card__media">
+                <img src="assets/img/work/content-strategy.svg" alt="Content calendar board with three weeks of scheduled posts" width="1200" height="800" loading="lazy" decoding="async">
+                <span class="work-card__cat">Social Media Designs</span>
+                <span class="work-card__view"><span>View Project</span><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+              </div>
+              <div class="work-card__body">
+                <h3>90-Day Strategy &amp; Content Calendar</h3>
+                <dl class="work-card__meta">
+                  <div><dt>Client</dt><dd>Arc SaaS Startup</dd></div>
+                  <div><dt>Software</dt><dd>Notion · Canva</dd></div>
+                </dl>
+              </div>
+            </a>
+          </article>
+
+          <article class="work-card reveal" data-reveal data-delay="120" data-cat="social instagram">
+            <a class="work-card__link" href="#contact" aria-label="View project: Social brand identity kit">
+              <div class="work-card__media">
+                <img src="assets/img/work/brand-design.svg" alt="Brand kit showing typography specimen and colour swatch tiles" width="1200" height="800" loading="lazy" decoding="async">
+                <span class="work-card__cat">Social Media Designs</span>
+                <span class="work-card__view"><span>View Project</span><svg class="ico"><use href="#i-arrow-ur"/></svg></span>
+              </div>
+              <div class="work-card__body">
+                <h3>Social Brand Kit &amp; Template Library</h3>
+                <dl class="work-card__meta">
+                  <div><dt>Client</dt><dd>Vera Studio Agency</dd></div>
+                  <div><dt>Software</dt><dd>Illustrator · Canva</dd></div>
+                </dl>
+              </div>
+            </a>
+          </article>
+        </div>
+
+        <p class="work__empty" id="workEmpty" hidden>No projects in this category yet — <a href="#contact">let's make yours the first</a>.</p>
+
+        <div class="work__cta reveal" data-reveal>
+          <a class="btn btn--primary" href="#contact" data-magnetic><span>Start a project</span><svg class="ico"><use href="#i-arrow-ur"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         WHY CHOOSE ME — animated statistic counters
+         ================================================================== -->
+    <section class="section stats" id="why">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow reveal" data-reveal><span></span> Why choose me</p>
+          <h2 class="section__title reveal" data-reveal>A freelancer who works like a <em class="grad">team you can trust</em>.</h2>
+        </header>
+
+        <div class="stats__grid">
+          <article class="stat glass reveal" data-reveal>
+            <span class="stat__icon"><svg class="ico"><use href="#i-layers"/></svg></span>
+            <strong class="stat__num" data-count="100" data-suffix="+">0</strong>
+            <span class="stat__label">Projects delivered</span>
+            <p>Across social, video, photo and paid creative for brands in 7 industries.</p>
+          </article>
+          <article class="stat glass reveal" data-reveal data-delay="60">
+            <span class="stat__icon"><svg class="ico"><use href="#i-users"/></svg></span>
+            <strong class="stat__num" data-count="95" data-suffix="%">0</strong>
+            <span class="stat__label">Client satisfaction</span>
+            <p>Most engagements turn into monthly retainers — the work speaks before I do.</p>
+          </article>
+          <article class="stat glass reveal" data-reveal data-delay="120">
+            <span class="stat__icon"><svg class="ico"><use href="#i-target"/></svg></span>
+            <strong class="stat__num" data-count="4" data-suffix="+">0</strong>
+            <span class="stat__label">Years experience</span>
+            <p>Four years inside the platforms, the algorithms and the analytics that matter.</p>
+          </article>
+          <article class="stat glass reveal" data-reveal data-delay="180">
+            <span class="stat__icon"><svg class="ico"><use href="#i-clock"/></svg></span>
+            <strong class="stat__num" data-count="24" data-suffix=" hrs">0</strong>
+            <span class="stat__label">Average response</span>
+            <p>Clear communication, predictable turnarounds and no chasing for updates.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TESTIMONIALS — swipeable slider with autoplay + keyboard support
+         NOTE: the quotes below are PLACEHOLDER copy. Replace with real,
+         permission-granted client testimonials before publishing.
+         ================================================================== -->
+    <section class="section testi" id="testimonials">
+      <div class="container">
+        <header class="section__head section__head--split">
+          <div>
+            <p class="eyebrow reveal" data-reveal><span></span> Testimonials</p>
+            <h2 class="section__title reveal" data-reveal>What clients say after <em class="grad">90 days</em>.</h2>
+          </div>
+          <div class="testi__nav reveal" data-reveal>
+            <button class="round-btn" id="testiPrev" aria-label="Previous testimonial"><svg class="ico"><use href="#i-chev-l"/></svg></button>
+            <button class="round-btn" id="testiNext" aria-label="Next testimonial"><svg class="ico"><use href="#i-chev-r"/></svg></button>
+          </div>
+        </header>
+
+        <div class="testi__viewport reveal" data-reveal id="testiViewport" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Client testimonials">
+          <div class="testi__track" id="testiTrack">
+
+            <article class="testi-card glass">
+              <svg class="testi-card__quote ico"><use href="#i-quote"/></svg>
+              <div class="stars" aria-label="Rated 5 out of 5">
+                <svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg>
+              </div>
+              <blockquote><p>Our reels went from an afterthought to our best lead source. June rebuilt the whole content system in a month and the enquiries have not slowed down since.</p></blockquote>
+              <footer class="testi-card__by">
+                <img src="assets/img/avatars/avatar-1.svg" alt="" width="56" height="56" loading="lazy">
+                <div><strong>Sarah Mitchell</strong><span>Founder · Mindset Coaching Co.</span></div>
+              </footer>
+            </article>
+
+            <article class="testi-card glass">
+              <svg class="testi-card__quote ico"><use href="#i-quote"/></svg>
+              <div class="stars" aria-label="Rated 5 out of 5">
+                <svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg>
+              </div>
+              <blockquote><p>The ad creatives paid for themselves in the first week. Clean process, fast revisions, and a genuine understanding of what makes people stop scrolling.</p></blockquote>
+              <footer class="testi-card__by">
+                <img src="assets/img/avatars/avatar-2.svg" alt="" width="56" height="56" loading="lazy">
+                <div><strong>Daniel Reyes</strong><span>Marketing Lead · Nordic Home Goods</span></div>
+              </footer>
+            </article>
+
+            <article class="testi-card glass">
+              <svg class="testi-card__quote ico"><use href="#i-quote"/></svg>
+              <div class="stars" aria-label="Rated 5 out of 5">
+                <svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg>
+              </div>
+              <blockquote><p>We white-label June for three of our retainer clients. Deadlines are never a question and the edits come back better than the brief we sent.</p></blockquote>
+              <footer class="testi-card__by">
+                <img src="assets/img/avatars/avatar-3.svg" alt="" width="56" height="56" loading="lazy">
+                <div><strong>Amara Koffi</strong><span>Creative Director · Vera Studio Agency</span></div>
+              </footer>
+            </article>
+
+            <article class="testi-card glass">
+              <svg class="testi-card__quote ico"><use href="#i-quote"/></svg>
+              <div class="stars" aria-label="Rated 5 out of 5">
+                <svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg>
+              </div>
+              <blockquote><p>Listings that used to sit for weeks now get saved and shared. The walkthrough edits look like a production crew shot them, not a phone.</p></blockquote>
+              <footer class="testi-card__by">
+                <img src="assets/img/avatars/avatar-4.svg" alt="" width="56" height="56" loading="lazy">
+                <div><strong>Liam Tan</strong><span>Broker · Harbour Realty Group</span></div>
+              </footer>
+            </article>
+
+            <article class="testi-card glass">
+              <svg class="testi-card__quote ico"><use href="#i-quote"/></svg>
+              <div class="stars" aria-label="Rated 5 out of 5">
+                <svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg>
+              </div>
+              <blockquote><p>Finally a content partner who reads the analytics. Every month we get a short report and a clear reason for what changes next.</p></blockquote>
+              <footer class="testi-card__by">
+                <img src="assets/img/avatars/avatar-5.svg" alt="" width="56" height="56" loading="lazy">
+                <div><strong>Maya Johnson</strong><span>Head of Growth · Arc SaaS</span></div>
+              </footer>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="testi__dots" id="testiDots" role="tablist" aria-label="Choose testimonial"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         PROCESS — 8-step workflow timeline with scroll-linked progress line
+         ================================================================== -->
+    <section class="section process" id="process">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow reveal" data-reveal><span></span> Process</p>
+          <h2 class="section__title reveal" data-reveal>A workflow built for <em class="grad">consistency</em>, not chaos.</h2>
+          <p class="section__lead reveal" data-reveal data-delay="80">Eight steps, repeated every month. You always know what's happening and what's next.</p>
+        </header>
+
+        <ol class="timeline" id="timeline">
+          <span class="timeline__line" aria-hidden="true"><i id="timelineFill"></i></span>
+
+          <li class="step reveal" data-reveal>
+            <span class="step__dot"><svg class="ico"><use href="#i-search"/></svg></span>
+            <div class="step__card glass">
+              <span class="step__num">01</span><h3>Discovery</h3>
+              <p>A short call to map your goals, offers, audience and what "winning" looks like in numbers.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-reveal>
+            <span class="step__dot"><svg class="ico"><use href="#i-book"/></svg></span>
+            <div class="step__card glass">
+              <span class="step__num">02</span><h3>Research</h3>
+              <p>Competitor teardown, audience listening and a sweep of the formats currently working in your niche.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-reveal>
+            <span class="step__dot"><svg class="ico"><use href="#i-map"/></svg></span>
+            <div class="step__card glass">
+              <span class="step__num">03</span><h3>Planning</h3>
+              <p>Content pillars, hook bank, posting cadence and a calendar approved before a single asset is made.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-reveal>
+            <span class="step__dot"><svg class="ico"><use href="#i-camera"/></svg></span>
+            <div class="step__card glass">
+              <span class="step__num">04</span><h3>Content Creation</h3>
+              <p>Scripts, captions, graphics and shot lists — produced in batches so quality stays even.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-reveal>
+            <span class="step__dot"><svg class="ico"><use href="#i-scissors"/></svg></span>
+            <div class="step__card glass">
+              <span class="step__num">05</span><h3>Editing</h3>
+              <p>Cutting, captioning, sound design, colour and design polish until every asset is on-brand.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-reveal>
+            <span class="step__dot"><svg class="ico"><use href="#i-calendar"/></svg></span>
+            <div class="step__card glass">
+              <span class="step__num">06</span><h3>Scheduling</h3>
+              <p>Everything queued to the best slots for your audience, with community replies handled daily.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-reveal>
+            <span class="step__dot"><svg class="ico"><use href="#i-chart"/></svg></span>
+            <div class="step__card glass">
+              <span class="step__num">07</span><h3>Analytics</h3>
+              <p>Reach, retention, saves, shares and conversions — one clear monthly report, no vanity metrics.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-reveal>
+            <span class="step__dot"><svg class="ico"><use href="#i-trend"/></svg></span>
+            <div class="step__card glass">
+              <span class="step__num">08</span><h3>Optimization</h3>
+              <p>Double down on what performed, cut what didn't, and feed the learnings into next month's plan.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TOOLS — software stack grid (brand-tinted glass tiles)
+         ================================================================== -->
+    <section class="section tools" id="tools">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow reveal" data-reveal><span></span> Tools</p>
+          <h2 class="section__title reveal" data-reveal>The stack behind the <em class="grad">output</em>.</h2>
+          <p class="section__lead reveal" data-reveal data-delay="80">Professional tools, used daily — plus AI where it speeds up research and drafting without flattening your voice.</p>
+        </header>
+
+        <ul class="tools__grid">
+          <li class="tool reveal" data-reveal style="--tool:#00C4CC"><span class="tool__mark tool__mark--canva">C</span><span class="tool__name">Canva</span></li>
+          <li class="tool reveal" data-reveal style="--tool:#F0F0F0"><span class="tool__mark tool__mark--capcut">✂</span><span class="tool__name">CapCut</span></li>
+          <li class="tool reveal" data-reveal style="--tool:#9999FF"><span class="tool__mark tool__mark--adobe" data-adobe="Pr">Pr</span><span class="tool__name">Premiere Pro</span></li>
+          <li class="tool reveal" data-reveal style="--tool:#31A8FF"><span class="tool__mark tool__mark--adobe tool__mark--ps" data-adobe="Ps">Ps</span><span class="tool__name">Photoshop</span></li>
+          <li class="tool reveal" data-reveal style="--tool:#FF9A00"><span class="tool__mark tool__mark--adobe tool__mark--ai" data-adobe="Ai">Ai</span><span class="tool__name">Illustrator</span></li>
+          <li class="tool reveal" data-reveal style="--tool:#9999FF"><span class="tool__mark tool__mark--adobe tool__mark--ae" data-adobe="Ae">Ae</span><span class="tool__name">After Effects</span></li>
+          <li class="tool reveal" data-reveal style="--tool:#0081FB"><span class="tool__mark tool__mark--meta">∞</span><span class="tool__name">Meta Business Suite</span></li>
+          <li class="tool reveal" data-reveal style="--tool:#E8E8E8"><span class="tool__mark tool__mark--notion">N</span><span class="tool__name">Notion</span></li>
+          <li class="tool reveal" data-reveal style="--tool:#4285F4"><span class="tool__mark tool__mark--google">G</span><span class="tool__name">Google Workspace</span></li>
+          <li class="tool reveal" data-reveal style="--tool:#10A37F"><span class="tool__mark tool__mark--gpt">❋</span><span class="tool__name">ChatGPT</span></li>
+          <li class="tool reveal" data-reveal style="--tool:#D97757"><span class="tool__mark tool__mark--claude">✳</span><span class="tool__name">Claude</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CONTACT
+         Two columns: brand-coloured contact cards + animated social row on
+         the left, validated enquiry form on the right.
+         Each card carries its platform colour in a --brand custom property,
+         which drives the icon tint, hover border and glow.
+         ================================================================== -->
+    <section class="section contact" id="contact">
+      <div class="container">
+
+        <header class="section__head section__head--center">
+          <p class="eyebrow reveal" data-reveal><span></span> Contact</p>
+          <h2 class="section__title reveal" data-reveal>Let's <em class="grad">Work Together</em></h2>
+          <p class="section__lead reveal" data-reveal data-delay="80">
+            Whether you need social media management, engaging video edits, or high-quality
+            graphic designs, I'd love to help bring your ideas to life. Let's connect.
+          </p>
+        </header>
+
+        <div class="contact__grid">
+
+          <!-- ---------- LEFT: direct contact cards ---------- -->
+          <aside class="contact__channels">
+            <h3 class="contact__sub reveal" data-reveal>Reach me directly</h3>
+
+            <ul class="channels">
+              <li class="channel reveal" data-reveal style="--brand:#1877F2">
+                <a href="https://www.facebook.com/juniieeeimnida" target="_blank" rel="noopener noreferrer">
+                  <span class="channel__icon"><svg class="ico"><use href="#i-facebook"/></svg></span>
+                  <span class="channel__text"><strong>Facebook</strong><span>@juniieeeimnida</span></span>
+                  <svg class="ico channel__go"><use href="#i-arrow-ur"/></svg>
+                </a>
+              </li>
+
+              <!-- Instagram is the one brand with a gradient rather than a flat colour -->
+              <li class="channel channel--ig reveal" data-reveal data-delay="50" style="--brand:#DD2A7B">
+                <a href="https://www.instagram.com/jaaaww.kneeee/" target="_blank" rel="noopener noreferrer">
+                  <span class="channel__icon"><svg class="ico"><use href="#i-instagram"/></svg></span>
+                  <span class="channel__text"><strong>Instagram</strong><span>@jaaaww.kneeee</span></span>
+                  <svg class="ico channel__go"><use href="#i-arrow-ur"/></svg>
+                </a>
+              </li>
+
+              <li class="channel reveal" data-reveal data-delay="100" style="--brand:#0A66C2">
+                <a href="https://www.linkedin.com/in/june-rey-claros-2996b8176/" target="_blank" rel="noopener noreferrer">
+                  <span class="channel__icon"><svg class="ico"><use href="#i-linkedin"/></svg></span>
+                  <span class="channel__text"><strong>LinkedIn</strong><span>June Rey Claros</span></span>
+                  <svg class="ico channel__go"><use href="#i-arrow-ur"/></svg>
+                </a>
+              </li>
+
+              <li class="channel reveal" data-reveal data-delay="150" style="--brand:#25D366">
+                <a href="https://wa.me/639242105866" target="_blank" rel="noopener noreferrer">
+                  <span class="channel__icon"><svg class="ico"><use href="#i-whatsapp"/></svg></span>
+                  <span class="channel__text"><strong>WhatsApp</strong><span>+63 924 210 5866</span></span>
+                  <svg class="ico channel__go"><use href="#i-arrow-ur"/></svg>
+                </a>
+              </li>
+
+              <!-- mailto deliberately stays in the same tab: a new tab for a
+                   mail client leaves an empty window behind -->
+              <li class="channel reveal" data-reveal data-delay="200" style="--brand:#EA4335">
+                <a href="mailto:clarosjunerey143@gmail.com">
+                  <span class="channel__icon"><svg class="ico"><use href="#i-mail"/></svg></span>
+                  <span class="channel__text"><strong>Email</strong><span>clarosjunerey143@gmail.com</span></span>
+                  <svg class="ico channel__go"><use href="#i-arrow-ur"/></svg>
+                </a>
+              </li>
+            </ul>
+
+            <!-- Animated social row: same platforms, compact -->
+            <ul class="social-row reveal" data-reveal aria-label="Social profiles">
+              <li style="--brand:#1877F2;--d:0s">
+                <a href="https://www.facebook.com/juniieeeimnida" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                  <svg class="ico"><use href="#i-facebook"/></svg>
+                </a>
+              </li>
+              <li class="is-ig" style="--brand:#DD2A7B;--d:-.6s">
+                <a href="https://www.instagram.com/jaaaww.kneeee/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <svg class="ico"><use href="#i-instagram"/></svg>
+                </a>
+              </li>
+              <li style="--brand:#0A66C2;--d:-1.2s">
+                <a href="https://www.linkedin.com/in/june-rey-claros-2996b8176/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <svg class="ico"><use href="#i-linkedin"/></svg>
+                </a>
+              </li>
+              <li style="--brand:#25D366;--d:-1.8s">
+                <a href="https://wa.me/639242105866" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                  <svg class="ico"><use href="#i-whatsapp"/></svg>
+                </a>
+              </li>
+              <li style="--brand:#EA4335;--d:-2.4s">
+                <a href="mailto:clarosjunerey143@gmail.com" aria-label="Email">
+                  <svg class="ico"><use href="#i-mail"/></svg>
+                </a>
+              </li>
+            </ul>
+
+            <p class="contact__note reveal" data-reveal>
+              <svg class="ico"><use href="#i-pin"/></svg> Working remotely with clients worldwide
+            </p>
+          </aside>
+
+          <!-- ---------- RIGHT: enquiry form ---------- -->
+          <div class="contact__form-wrap reveal" data-reveal>
+            <!-- TODO: set data-endpoint to your Formspree / Getform / Basin URL.
+                 Until then the form opens a pre-filled email draft instead. -->
+            <form class="form glass" id="contactForm" novalidate data-endpoint="">
+              <h3 class="contact__sub">Start a project</h3>
+
+              <div class="form__row">
+                <div class="field">
+                  <input type="text" id="name" name="name" placeholder=" " required autocomplete="name">
+                  <label for="name">Full Name</label>
+                  <small class="field__err" data-err></small>
+                </div>
+                <div class="field">
+                  <input type="email" id="email" name="email" placeholder=" " required autocomplete="email">
+                  <label for="email">Email Address</label>
+                  <small class="field__err" data-err></small>
+                </div>
+              </div>
+
+              <div class="form__row">
+                <div class="field">
+                  <input type="text" id="company" name="company" placeholder=" " autocomplete="organization">
+                  <label for="company">Company Name <i>(optional)</i></label>
+                </div>
+                <div class="field">
+                  <select id="projectType" name="projectType" required>
+                    <option value=""></option>
+                    <option>Social Media Management</option>
+                    <option>Video Editing</option>
+                    <option>Photo Editing</option>
+                    <option>Content Strategy</option>
+                    <option>Brand &amp; Graphic Design</option>
+                    <option>Short-form Reels / TikTok</option>
+                    <option>YouTube Editing &amp; Thumbnails</option>
+                    <option>Something else</option>
+                  </select>
+                  <label for="projectType" class="field__label--static">Project Type</label>
+                  <small class="field__err" data-err></small>
+                </div>
+              </div>
+
+              <div class="field">
+                <select id="budget" name="budget">
+                  <option value=""></option>
+                  <option>Under $500 / month</option>
+                  <option>$500 – $1,000 / month</option>
+                  <option>$1,000 – $2,500 / month</option>
+                  <option>$2,500+ / month</option>
+                  <option>One-off project</option>
+                  <option>Not sure yet</option>
+                </select>
+                <label for="budget" class="field__label--static">Budget Range</label>
+              </div>
+
+              <div class="field">
+                <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+                <label for="message">Message</label>
+                <small class="field__err" data-err></small>
+              </div>
+
+              <!-- Honeypot: bots fill this, humans never see it -->
+              <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+
+              <button class="btn btn--primary btn--block btn--lg" type="submit" data-magnetic>
+                <span>Let's Build Your Brand</span><svg class="ico"><use href="#i-arrow-ur"/></svg>
+              </button>
+
+              <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+              <p class="form__note"><svg class="ico"><use href="#i-clock"/></svg> I usually respond within 24 hours.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER — minimal: logo, quick links, socials, copyright
+       ==================================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#hero" class="nav__logo" aria-label="JRC — back to top">
+          <!-- two marks, one per theme: a white monogram vanishes on light -->
+        <img src="assets/img/logo/monogram-white.png" alt="" width="40" height="40" class="nav__logo-mark nav__logo-mark--dark">
+        <img src="assets/img/logo/monogram.png" alt="" width="40" height="40" class="nav__logo-mark nav__logo-mark--light">
+          <span class="nav__logo-text">June Rey<strong>Claros</strong></span>
+        </a>
+        <p>Social media management, video editing and content strategy for brands that want to be remembered.</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Footer">
+        <h4>Quick links</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__social">
+        <h4>Follow</h4>
+        <ul class="social">
+          <li><a href="https://www.facebook.com/juniieeeimnida" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg class="ico"><use href="#i-facebook"/></svg></a></li>
+          <li><a href="https://www.instagram.com/jaaaww.kneeee/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="ico"><use href="#i-instagram"/></svg></a></li>
+          <li><a href="https://www.linkedin.com/in/june-rey-claros-2996b8176/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="ico"><use href="#i-linkedin"/></svg></a></li>
+          <li><a href="https://wa.me/639242105866" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg class="ico"><use href="#i-whatsapp"/></svg></a></li>
+          <li><a href="mailto:clarosjunerey143@gmail.com" aria-label="Email"><svg class="ico"><use href="#i-mail"/></svg></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>&copy; <span id="year">2026</span> June Rey Claros. All rights reserved.</p>
+      <p class="footer__made">Designed &amp; built for brands that take content seriously.</p>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="to-top" id="toTop" aria-label="Back to top"><svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+
+  <!-- ===== SCRIPTS =========================================================
+       GSAP + ScrollTrigger enhance the hero timeline and parallax when they
+       load. Everything degrades to CSS/IntersectionObserver if the CDN is
+       blocked — the site never depends on them.
+       ==================================================================== -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="assets/js/app.js"></script>
+</body>
+
+</html>

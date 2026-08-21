@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img">
+  <defs>
+    <linearGradient id="bg9" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16305C"/><stop offset=".55" stop-color="#2B5CA8"/><stop offset="1" stop-color="#080B12"/>
+    </linearGradient>
+    <linearGradient id="gl9" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".18"/><stop offset="1" stop-color="#ffffff" stop-opacity=".02"/>
+    </linearGradient>
+    <radialGradient id="rd9" cx=".2" cy=".1" r=".9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".22"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="bl9" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg9)"/>
+  <g filter="url(#bl9)" opacity=".75">
+    <circle cx="180" cy="120" r="150" fill="#080B12" opacity=".55"/>
+    <circle cx="1040" cy="700" r="180" fill="#16305C" opacity=".5"/>
+  </g>
+  <rect width="1200" height="800" fill="url(#rd9)"/>
+  <g transform="translate(0,84)">
+
+  <g>
+    <rect x="72" y="112" width="420" height="420" rx="24" fill="#080B12" opacity=".78"/>
+    <rect x="72" y="112" width="420" height="420" rx="24" fill="url(#gl9)"/>
+    <rect x="72.5" y="112.5" width="419" height="419" rx="24" fill="none" stroke="#fff" stroke-opacity=".22"/>
+    <text x="282" y="368" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="150" font-weight="700" fill="#fff" opacity=".92">Aa</text>
+    <text x="282" y="424" text-anchor="middle" font-family="Poppins,sans-serif" font-size="18" fill="#fff" opacity=".55">Space Grotesk · Poppins</text>
+  </g>
+  <rect x="540" y="112" width="172" height="122" rx="18" fill="#fff" opacity="0.10"/><rect x="736" y="112" width="172" height="122" rx="18" fill="#fff" opacity="0.22"/><rect x="932" y="112" width="172" height="122" rx="18" fill="#fff" opacity="0.34"/><rect x="540" y="258" width="172" height="122" rx="18" fill="#fff" opacity="0.46"/><rect x="736" y="258" width="172" height="122" rx="18" fill="#fff" opacity="0.58"/><rect x="932" y="258" width="172" height="122" rx="18" fill="#fff" opacity="0.70"/>
+  <rect x="540" y="404" width="588" height="128" rx="20" fill="#080B12" opacity=".7"/>
+  <rect x="540" y="404" width="588" height="128" rx="20" fill="url(#gl9)"/>
+  <rect x="572" y="440" width="240" height="18" rx="9" fill="#fff" opacity=".5"/>
+  <rect x="572" y="472" width="380" height="14" rx="7" fill="#fff" opacity=".26"/>
+
+  </g>
+</svg>
