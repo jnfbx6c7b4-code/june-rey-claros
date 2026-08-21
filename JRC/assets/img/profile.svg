@@ -1,0 +1,38 @@
+<!--
+  PLACEHOLDER PORTRAIT. Replace with a real photo: a square image
+  (760x760 or larger, subject centred). Point both the portrait's
+  photo custom property and the img src at it in index.html.
+  The hero crops it to a circle with object-fit: cover.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" role="img" aria-label="Portrait placeholder">
+  <defs>
+    <linearGradient id="pBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#131C2C"/>
+      <stop offset=".55" stop-color="#1A2942"/>
+      <stop offset="1" stop-color="#101A2A"/>
+    </linearGradient>
+    <linearGradient id="pFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#080B12" stop-opacity=".5"/>
+    </linearGradient>
+    <linearGradient id="pFig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E9E9F2" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#B9B9CC" stop-opacity=".8"/>
+    </linearGradient>
+    <filter id="pBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#pBg)"/>
+  <g filter="url(#pBlur)" opacity=".85">
+    <circle cx="170" cy="180" r="180" fill="#6492D8" opacity=".55"/>
+    <circle cx="650" cy="640" r="200" fill="#BDD7FF" opacity=".32"/>
+    <circle cx="620" cy="140" r="130" fill="#8AB4F2" opacity=".4"/>
+  </g>
+  <rect width="800" height="800" fill="url(#pFade)"/>
+
+  <!-- stylised bust: head + shoulders, centred for a circular crop -->
+  <circle cx="400" cy="330" r="132" fill="url(#pFig)"/>
+  <path d="M148 800c26-158 122-244 252-244s226 86 252 244z" fill="url(#pFig)"/>
+</svg>

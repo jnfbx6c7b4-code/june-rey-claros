@@ -1,0 +1,404 @@
+/*
+==========================================
+    JRC PORTFOLIO — cards, filters, lightbox
+    Scoped under .pf- so nothing here can
+    collide with the template's own styles.
+==========================================
+*/
+
+.pf-intro {
+    max-width: 720px;
+}
+.pf-intro p {
+    font-size  : 17px;
+    font-weight: 400;
+    color      : #4a4f52;
+    margin     : 0;
+}
+
+/* ---------- filters ---------- */
+.pf-filters-wrap {
+    position: relative;
+    margin  : 40px 0 34px;
+}
+.pf-filters {
+    display        : flex;
+    flex-wrap      : wrap;
+    gap            : 8px;
+    list-style     : none;
+    margin         : 0;
+    padding        : 4px 0;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+.pf-filters::-webkit-scrollbar { display: none; }
+
+.pf-filter {
+    flex          : 0 0 auto;
+    font-family   : 'Oswald', sans-serif;
+    font-size     : 13px;
+    font-weight   : 500;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    color         : #4a4f52;
+    background    : #fff;
+    border        : 1px solid #e4e6e8;
+    border-radius : 40px;
+    padding       : 10px 20px;
+    cursor        : pointer;
+    white-space   : nowrap;
+    transition    : background .25s, color .25s, border-color .25s;
+}
+.pf-filter:hover {
+    border-color: var(--jrc-accent, #7db1ff);
+    color       : var(--jrc-primary, #0065fc);
+}
+.pf-filter[aria-pressed="true"] {
+    background  : var(--jrc-primary, #0065fc);
+    border-color: var(--jrc-primary, #0065fc);
+    color       : #fff;
+}
+.pf-filter:focus-visible {
+    outline       : 2px solid var(--jrc-primary, #0065fc);
+    outline-offset: 2px;
+}
+.pf-count {
+    font-size: 13px;
+    color    : #8b9195;
+    margin   : 0 0 26px;
+}
+
+/* ---------- grid ---------- */
+.pf-grid {
+    display              : grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap                  : 26px;
+}
+.pf-item { min-width: 0; }
+.pf-item[hidden] { display: none; }
+.pf-item.is-featured { grid-column: span 2; }
+
+/* ---------- card ---------- */
+.pf-card {
+    display        : flex;
+    flex-direction : column;
+    width          : 100%;
+    padding        : 0;
+    text-align     : left;
+    background     : #fff;
+    border         : 1px solid #ececee;
+    border-radius  : 10px;
+    overflow       : hidden;
+    cursor         : pointer;
+    font           : inherit;
+    color          : inherit;
+    transition     : transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.pf-card:hover {
+    transform   : translateY(-4px);
+    box-shadow  : 0 18px 40px rgba(11, 13, 14, .13);
+    border-color: #dfe3e6;
+}
+/* focus gets a ring and shadow but no lift: restoring focus after the
+   lightbox closes must not nudge the card the image just flew back to */
+.pf-card:focus-visible {
+    box-shadow    : 0 18px 40px rgba(11, 13, 14, .13);
+    border-color  : #dfe3e6;
+    outline       : 2px solid var(--jrc-primary, #0065fc);
+    outline-offset: 3px;
+}
+
+.pf-shot {
+    display   : block;
+    position  : relative;
+    overflow  : hidden;
+    background: #f3f4f5;
+    aspect-ratio: 4 / 3;
+}
+.is-featured .pf-shot { aspect-ratio: 16 / 9; }
+
+.pf-shot img {
+    width     : 100%;
+    height    : 100%;
+    object-fit: cover;
+    display   : block;
+    transition: transform .55s cubic-bezier(.2, .7, .3, 1), opacity .2s;
+}
+.pf-card:hover .pf-shot img { transform: scale(1.045); }
+
+/* subtle darkening + CTA on hover */
+.pf-veil {
+    position  : absolute;
+    inset     : 0;
+    background: linear-gradient(to top, rgba(11,13,14,.72) 0%, rgba(11,13,14,.12) 45%, rgba(11,13,14,0) 75%);
+    opacity   : 0;
+    transition: opacity .3s ease;
+    display        : flex;
+    align-items    : flex-end;
+    padding        : 22px;
+}
+.pf-card:hover .pf-veil,
+.pf-card:focus-visible .pf-veil { opacity: 1; }
+
+.pf-cta {
+    font-family   : 'Oswald', sans-serif;
+    font-size     : 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color         : #fff;
+    transform     : translateY(8px);
+    transition    : transform .3s ease .04s;
+}
+.pf-card:hover .pf-cta,
+.pf-card:focus-visible .pf-cta { transform: translateY(0); }
+.pf-cta i { margin-left: 6px; }
+
+/* asset-count / video badge */
+.pf-badge {
+    position      : absolute;
+    top           : 14px;
+    right         : 14px;
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 6px;
+    background    : rgba(11, 13, 14, .78);
+    color         : #fff;
+    font-family   : 'Oswald', sans-serif;
+    font-size     : 11px;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    padding       : 6px 11px;
+    border-radius : 30px;
+    backdrop-filter: blur(4px);
+}
+
+.pf-meta { display: block; padding: 22px 22px 24px; }
+.pf-eyebrow {
+    display       : block;
+    font-family   : 'Oswald', sans-serif;
+    font-size     : 12px;
+    font-weight   : 500;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    color         : var(--jrc-primary, #0065fc);
+    margin        : 0 0 9px;
+}
+.pf-title {
+    display       : block;
+    font-family   : 'Oswald', sans-serif;
+    font-size     : 20px;
+    line-height   : 1.28;
+    font-weight   : 600;
+    text-transform: uppercase;
+    color         : #0b0d0e;
+    margin        : 0 0 10px;
+}
+.is-featured .pf-title { font-size: 25px; }
+.pf-desc {
+    display      : block;
+    font-size    : 14.5px;
+    line-height  : 1.62;
+    color        : #5c6164;
+    margin       : 0;
+}
+.pf-tags {
+    list-style: none;
+    display   : flex;
+    flex-wrap : wrap;
+    gap       : 6px;
+    margin    : 15px 0 0;
+    padding   : 0;
+}
+.pf-tags span {
+    font-size     : 11px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color         : #6f7477;
+    background    : #f4f5f6;
+    border-radius : 4px;
+    padding       : 5px 9px;
+}
+
+.pf-empty {
+    grid-column: 1 / -1;
+    text-align : center;
+    padding    : 60px 0;
+    color      : #8b9195;
+}
+
+/* ---------- lightbox ---------- */
+.pf-lb {
+    position      : fixed;
+    inset         : 0;
+    z-index       : 10000;
+    display        : none;
+    touch-action  : none;
+    overscroll-behavior: contain;
+}
+.pf-lb.is-open { display: block; }
+
+.pf-lb-backdrop {
+    position  : absolute;
+    inset     : 0;
+    background: rgba(8, 10, 12, .95);
+}
+
+/* the flying element */
+.pf-lb-stage {
+    position       : fixed;
+    margin         : 0;
+    transform-origin: top left;
+    will-change    : transform;
+    overflow       : hidden;
+    border-radius  : 4px;
+}
+.pf-lb-stage img,
+.pf-lb-stage video {
+    width     : 100%;
+    height    : 100%;
+    object-fit: contain;
+    display   : block;
+    background: #0b0d0e;
+}
+.pf-lb-stage.is-flying { transition: transform .34s cubic-bezier(.2, .75, .28, 1); }
+
+/* chrome fades in after the flight so it never fights the motion */
+.pf-lb-chrome {
+    position  : absolute;
+    inset     : 0;
+    opacity   : 0;
+    transition: opacity .22s ease;
+    pointer-events: none;
+}
+.pf-lb.is-shown .pf-lb-chrome { opacity: 1; pointer-events: none; }
+.pf-lb-chrome button { pointer-events: auto; }
+
+.pf-lb-bar {
+    position   : absolute;
+    left       : 0;
+    right      : 0;
+    top        : 0;
+    display    : flex;
+    align-items: flex-start;
+    gap        : 20px;
+    padding    : 22px 24px;
+    color      : #fff;
+    background : linear-gradient(to bottom, rgba(8,10,12,.85), rgba(8,10,12,0));
+}
+.pf-lb-caption { flex: 1 1 auto; min-width: 0; }
+.pf-lb-cat {
+    font-family   : 'Oswald', sans-serif;
+    font-size     : 11.5px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color         : var(--jrc-accent, #7db1ff);
+    margin        : 0 0 5px;
+}
+.pf-lb-name {
+    font-family   : 'Oswald', sans-serif;
+    font-size     : 17px;
+    font-weight   : 500;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    color         : #fff;
+    margin        : 0;
+}
+.pf-lb-sub {
+    font-size: 13px;
+    color    : rgba(255,255,255,.62);
+    margin   : 5px 0 0;
+}
+
+.pf-lb-btn {
+    flex           : 0 0 auto;
+    width          : 44px;
+    height         : 44px;
+    display        : grid;
+    place-items    : center;
+    background     : rgba(255,255,255,.1);
+    border         : 1px solid rgba(255,255,255,.22);
+    border-radius  : 50%;
+    color          : #fff;
+    font-size      : 17px;
+    cursor         : pointer;
+    transition     : background .2s, border-color .2s, transform .2s;
+}
+.pf-lb-btn:hover {
+    background  : var(--jrc-primary, #0065fc);
+    border-color: var(--jrc-primary, #0065fc);
+}
+.pf-lb-btn:focus-visible {
+    outline       : 2px solid #fff;
+    outline-offset: 2px;
+}
+.pf-lb-nav {
+    position: absolute;
+    top     : 50%;
+    margin-top: -22px;
+    width   : 46px;
+    height  : 46px;
+}
+.pf-lb-prev { left : 20px; }
+.pf-lb-next { right: 20px; }
+.pf-lb-nav[hidden] { display: none; }
+
+.pf-lb-foot {
+    position  : absolute;
+    left      : 0;
+    right     : 0;
+    bottom    : 0;
+    padding   : 20px 24px 22px;
+    display   : flex;
+    align-items: center;
+    justify-content: center;
+    gap       : 18px;
+    color     : rgba(255,255,255,.75);
+    font-size : 13px;
+    background: linear-gradient(to top, rgba(8,10,12,.85), rgba(8,10,12,0));
+}
+.pf-lb-dl {
+    pointer-events: auto;
+    color         : #fff;
+    border-bottom : 1px solid rgba(255,255,255,.4);
+    padding-bottom: 1px;
+}
+.pf-lb-dl:hover { color: var(--jrc-accent, #7db1ff); }
+
+/* ---------- responsive ---------- */
+@media only screen and (max-width: 1199px) {
+    .pf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+    .pf-item.is-featured { grid-column: span 2; }
+}
+@media only screen and (max-width: 767px) {
+    .pf-grid { grid-template-columns: 1fr; gap: 20px; }
+    .pf-item.is-featured { grid-column: span 1; }
+    .pf-shot, .is-featured .pf-shot { aspect-ratio: 4 / 3; }
+    .pf-title, .is-featured .pf-title { font-size: 19px; }
+    .pf-meta { padding: 18px 18px 20px; }
+    /* touch has no hover: keep the CTA visible so the affordance is obvious */
+    .pf-veil { opacity: 1; background: linear-gradient(to top, rgba(11,13,14,.66) 0%, rgba(11,13,14,0) 55%); }
+    .pf-cta  { transform: none; }
+    .pf-filters {
+        flex-wrap : nowrap;
+        overflow-x: auto;
+        /* let the row bleed to the screen edges so it reads as scrollable */
+        margin    : 0 -15px;
+        padding   : 4px 15px;
+    }
+    .pf-filters::after { content: ""; flex: 0 0 4px; }
+    .pf-lb-bar  { padding: 14px 14px; }
+    .pf-lb-foot { padding: 14px; }
+    .pf-lb-nav  { width: 42px; height: 42px; margin-top: -21px; }
+    .pf-lb-prev { left: 10px; }
+    .pf-lb-next { right: 10px; }
+    .pf-lb-name { font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pf-card, .pf-shot img, .pf-veil, .pf-cta,
+    .pf-lb-stage.is-flying, .pf-lb-backdrop, .pf-lb-chrome {
+        transition: none !important;
+    }
+    .pf-card:hover { transform: none; }
+    .pf-card:hover .pf-shot img { transform: none; }
+}
