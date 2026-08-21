@@ -3,3 +3,7 @@
 node_modules/
 .env
 .env.local
+
+# Large source videos
+JRC/For SMM/Videos/*.mov
+JRC/For SMM/Videos/*.mp4
